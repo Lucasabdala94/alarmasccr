@@ -1,7 +1,7 @@
+import React from 'react';
 import './App.css';
 import Alarms from './components/Alarms';
 import ModalAlarm from './components/ModalAlarm';
-
 
 function App() {
   return (
