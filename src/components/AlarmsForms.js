@@ -13,6 +13,7 @@ import {
   Header,
   Icon,
 } from 'semantic-ui-react';
+import ModalError from './ModalError';
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
@@ -55,13 +56,11 @@ export default function AlarmsForms() {
           let descriptionAll = [];
           const getAlarm = await getDocs(agregarAlarma);
           getAlarm.forEach((doc) => {
-            descriptionAll.push(
-              doc.data().alarma + doc.data().et + doc.data().nicelTension
-            );
+            descriptionAll.push(doc.data().alarma + doc.data().et);
           });
 
           let existe = descriptionAll.includes(
-            values.alarma + values.et + values.nicelTension
+            (values.alarma + values.et).toLocaleLowerCase()
           );
           if (existe === true) {
             setLoading(false);
@@ -85,6 +84,7 @@ export default function AlarmsForms() {
       })();
     } else {
       setError(true);
+      setLoading(false);
     }
   };
 
@@ -136,7 +136,7 @@ export default function AlarmsForms() {
       <Message
         warning
         list={[
-          'Para alarmas donde intervienen dos ET, escribir ET emisora de la alarma',
+          'Alarmas donde intervienen dos ET, escribir ET emisora de la misma',
         ]}
       />
       <Form.Field
@@ -147,7 +147,7 @@ export default function AlarmsForms() {
         name="descripcion"
         value={values.descripcion}
       />
-      <Message warning list={['Incluir informacion del operador']} />
+      <Message warning list={['Incluir informacion del personal informado']} />
       <Form.Field control={Button} onSubmit={handleInputChange}>
         Agregar
       </Form.Field>
