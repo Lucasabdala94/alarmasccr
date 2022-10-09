@@ -41,6 +41,14 @@ export default function AlarmsForms() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { alarma, et, descripcion, nivelTension } = values;
+
+    const alarmaSan = alarma.toLocaleLowerCase().trim();
+    console.log(alarmaSan);
+    const etSan = et.toLocaleLowerCase().trim();
+    console.log(etSan);
+
+    const descripcionSan = descripcion.toLocaleLowerCase().trim();
+
     if (
       alarma.length !== 0 &&
       et.length !== 0 &&
@@ -51,26 +59,23 @@ export default function AlarmsForms() {
 
       (async () => {
         try {
-          const agregarAlarma = collection(db, '/alarmas');
           let descriptionAll = [];
-          const getAlarm = await getDocs(agregarAlarma);
+          const getAlarm = await getDocs(collection(db, '/alarmas'));
           getAlarm.forEach((doc) => {
             descriptionAll.push(doc.data().alarma + doc.data().et);
           });
 
-          let existe = descriptionAll.includes(
-            (alarma + et).toLocaleLowerCase()
-          );
-          console.log(alarma);
+          let existe = descriptionAll.includes(alarmaSan + etSan);
+
           if (existe === true) {
             setLoading(false);
             setExistente(true);
           } else {
-            const docRef = await addDoc(agregarAlarma, {
-              alarma: alarma.toLocaleLowerCase().trim(),
-              descripcion: descripcion.toLocaleLowerCase().trim(),
-              et: et.toLocaleLowerCase().trim(),
-              nivelTension: nivelTension.toLocaleLowerCase().trim(),
+            const docRef = await addDoc(collection(db, '/alarmas'), {
+              alarma: alarmaSan,
+              descripcion: descripcionSan,
+              et: etSan,
+              nivelTension: nivelTension,
               id: uuidv4(),
             });
             setRegistrada(true);
@@ -100,7 +105,7 @@ export default function AlarmsForms() {
       <Message
         error
         list={[
-          'Ingresar exactamente como se lee el Nombre Del Punto en Scada respetando espacios',
+          'Ingresar exactamente como se lee el Nombre Del Punto de la alarma en Scada respetando espacios',
         ]}
       />
       <Form.Group widths="equal">
@@ -146,7 +151,13 @@ export default function AlarmsForms() {
         name="descripcion"
         value={values.descripcion}
       />
-      <Message warning list={['Incluir informacion del personal informado']} />
+      <Message
+        warning
+        list={[
+          'Ingresar fecha y hora ',
+          'Incluir informacion del personal informado',
+        ]}
+      />
       <Form.Field control={Button} onSubmit={handleInputChange}>
         Agregar
       </Form.Field>
