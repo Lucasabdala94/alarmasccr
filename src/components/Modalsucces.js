@@ -8,7 +8,7 @@ export default function ModalError(props) {
     <Modal
       onClose={onClose}
       onOpen={onOpen}
-      open={registrada}
+      open={open}
       size="small"
       blurring="true"
     >
