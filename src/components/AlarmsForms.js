@@ -13,21 +13,23 @@ import {
   Header,
   Icon,
 } from 'semantic-ui-react';
-import ModalError from './ModalError';
+
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [existente, setExistente] = useState(false);
+  const [registrada, setRegistrada] = useState(false);
+
   const initialStateValue = {
     alarma: '',
     et: '',
     descripcion: '',
     nivelTension: '-',
   };
-
   const [values, setValues] = useState(initialStateValue);
-  const [error, setError] = useState(false);
-  const [existente, setExistente] = useState(false);
-  const [registrada, setRegistrada] = useState(false);
+
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +38,7 @@ export default function AlarmsForms() {
       [name]: value,
     });
   };
-
+    
   const handleSubmit = (e) => {
     e.preventDefault();
     const { alarma, et, descripcion, nivelTension } = values;
@@ -47,36 +49,36 @@ export default function AlarmsForms() {
       nivelTension.length !== 1
     ) {
       setLoading(true);
-
-      /*============================= */
-
+      
       (async () => {
-        try {
+          try {
+            
           const agregarAlarma = collection(db, '/alarmas');
           let descriptionAll = [];
           const getAlarm = await getDocs(agregarAlarma);
           getAlarm.forEach((doc) => {
             descriptionAll.push(doc.data().alarma + doc.data().et);
           });
-
+          
           let existe = descriptionAll.includes(
-            (values.alarma + values.et).toLocaleLowerCase()
+            (alarma + et).toLocaleLowerCase()
           );
+          console.log(alarma)
           if (existe === true) {
             setLoading(false);
             setExistente(true);
           } else {
-            const docRef = await addDoc(agregarAlarma, {
-              alarma: values.alarma.toLocaleLowerCase(),
-              descripcion: values.descripcion.toLocaleLowerCase(),
-              et: values.et.toLocaleLowerCase(),
-              nivelTension: values.nivelTension.toLocaleLowerCase(),
-              id: uuidv4(),
-            });
+          const docRef = await addDoc(agregarAlarma, {
+            alarma: alarma.toLocaleLowerCase().trim(),
+            descripcion: descripcion.toLocaleLowerCase().trim(),
+            et: et.toLocaleLowerCase().trim(),
+            nivelTension: nivelTension.toLocaleLowerCase().trim(),
+            id: uuidv4(),
+          });
             setRegistrada(true);
             setLoading(false);
             setValues(initialStateValue);
-            console.log('pasa el form');
+            
           }
         } catch (e) {
           setLoading(false);
@@ -123,7 +125,7 @@ export default function AlarmsForms() {
           <option value="110 DC">110 DC</option>
           <option value="48 DC">48 V DC</option>
           <option value="Otra">Otra</option>
-        </Form.Field>
+      </Form.Field>
         <Form.Field
           control={Input}
           label="Nombre Abreviado de ET"
@@ -134,11 +136,11 @@ export default function AlarmsForms() {
         />
       </Form.Group>
       <Message
-        warning
-        list={[
+          warning
+          list={[
           'Alarmas donde intervienen dos ET, escribir ET emisora de la misma',
-        ]}
-      />
+          ]}
+        />
       <Form.Field
         control={TextArea}
         label="Agrege una descripción"
@@ -152,11 +154,11 @@ export default function AlarmsForms() {
         Agregar
       </Form.Field>
       <Modal
-        onClose={() => setError(false)}
-        onOpen={() => setError(true)}
-        open={error}
+      onClose={() => setError(false)}
+      onOpen={() => setError(true)}
+      open={error}
         size="small"
-        blurring="true"
+      blurring="true"
       >
         <Header>
           <Icon name="tasks" />
@@ -218,6 +220,6 @@ export default function AlarmsForms() {
           </Button>
         </Modal.Actions>
       </Modal>
-    </Form>
+  </Form>
   );
 }
