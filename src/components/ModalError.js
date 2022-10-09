@@ -2,12 +2,13 @@ import React from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 
 export default function ModalError(props) {
-  const { setExistente, existente } = props;
+  const { onClose, onOpen, open } = props;
+
   return (
     <Modal
-      onClose={() => setExistente(false)}
-      onOpen={() => setExistente(true)}
-      open={existente}
+      onClose={onClose}
+      onOpen={onOpen}
+      open={open}
       size="small"
       blurring="true"
     >
@@ -19,7 +20,7 @@ export default function ModalError(props) {
         <h3>Alarma existente en registro</h3>
       </Modal.Content>
       <Modal.Actions>
-        <Button basic color="red" onClick={() => setExistente(false)}>
+        <Button basic color="red" onClick={onClose}>
           <Icon name="remove" /> cerrar
         </Button>
       </Modal.Actions>

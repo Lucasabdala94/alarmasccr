@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
+import ModalError from './ModalError';
+import Modalsucces from './Modalsucces';
 
 import {
   Button,
@@ -13,7 +15,6 @@ import {
   Header,
   Icon,
 } from 'semantic-ui-react';
-
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
@@ -29,8 +30,6 @@ export default function AlarmsForms() {
   };
   const [values, setValues] = useState(initialStateValue);
 
-  
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -38,7 +37,7 @@ export default function AlarmsForms() {
       [name]: value,
     });
   };
-    
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { alarma, et, descripcion, nivelTension } = values;
@@ -49,36 +48,34 @@ export default function AlarmsForms() {
       nivelTension.length !== 1
     ) {
       setLoading(true);
-      
+
       (async () => {
-          try {
-            
+        try {
           const agregarAlarma = collection(db, '/alarmas');
           let descriptionAll = [];
           const getAlarm = await getDocs(agregarAlarma);
           getAlarm.forEach((doc) => {
             descriptionAll.push(doc.data().alarma + doc.data().et);
           });
-          
+
           let existe = descriptionAll.includes(
             (alarma + et).toLocaleLowerCase()
           );
-          console.log(alarma)
+          console.log(alarma);
           if (existe === true) {
             setLoading(false);
             setExistente(true);
           } else {
-          const docRef = await addDoc(agregarAlarma, {
-            alarma: alarma.toLocaleLowerCase().trim(),
-            descripcion: descripcion.toLocaleLowerCase().trim(),
-            et: et.toLocaleLowerCase().trim(),
-            nivelTension: nivelTension.toLocaleLowerCase().trim(),
-            id: uuidv4(),
-          });
+            const docRef = await addDoc(agregarAlarma, {
+              alarma: alarma.toLocaleLowerCase().trim(),
+              descripcion: descripcion.toLocaleLowerCase().trim(),
+              et: et.toLocaleLowerCase().trim(),
+              nivelTension: nivelTension.toLocaleLowerCase().trim(),
+              id: uuidv4(),
+            });
             setRegistrada(true);
             setLoading(false);
             setValues(initialStateValue);
-            
           }
         } catch (e) {
           setLoading(false);
@@ -125,7 +122,7 @@ export default function AlarmsForms() {
           <option value="110 DC">110 DC</option>
           <option value="48 DC">48 V DC</option>
           <option value="Otra">Otra</option>
-      </Form.Field>
+        </Form.Field>
         <Form.Field
           control={Input}
           label="Nombre Abreviado de ET"
@@ -136,11 +133,11 @@ export default function AlarmsForms() {
         />
       </Form.Group>
       <Message
-          warning
-          list={[
+        warning
+        list={[
           'Alarmas donde intervienen dos ET, escribir ET emisora de la misma',
-          ]}
-        />
+        ]}
+      />
       <Form.Field
         control={TextArea}
         label="Agrege una descripción"
@@ -154,11 +151,11 @@ export default function AlarmsForms() {
         Agregar
       </Form.Field>
       <Modal
-      onClose={() => setError(false)}
-      onOpen={() => setError(true)}
-      open={error}
+        onClose={() => setError(false)}
+        onOpen={() => setError(true)}
+        open={error}
         size="small"
-      blurring="true"
+        blurring="true"
       >
         <Header>
           <Icon name="tasks" />
@@ -177,49 +174,17 @@ export default function AlarmsForms() {
           </Button>
         </Modal.Actions>
       </Modal>
-      <Modal
+      <ModalError
         onClose={() => setExistente(false)}
         onOpen={() => setExistente(true)}
         open={existente}
-        size="small"
-        blurring="true"
-      >
-        <Header>
-          <Icon name="tasks" />
-          Error al Cargar la Alarma
-        </Header>
-        <Modal.Content>
-          <h3>Alarma existente en registro</h3>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic color="red" onClick={() => setExistente(false)}>
-            <Icon name="remove" /> cerrar
-          </Button>
-        </Modal.Actions>
-      </Modal>
-      <Modal
+      />
+
+      <Modalsucces
         onClose={() => setRegistrada(false)}
         onOpen={() => setRegistrada(true)}
         open={registrada}
-        size="small"
-        blurring="true"
-      >
-        <Header>
-          <Icon name="check square outline" color="green" />
-          Alarma registrada correctamente
-        </Header>
-        <Modal.Actions>
-          <Button
-            basic
-            color="green"
-            onClick={() => {
-              setRegistrada(false);
-            }}
-          >
-            <Icon name="check circle outline" /> Volver
-          </Button>
-        </Modal.Actions>
-      </Modal>
-  </Form>
+      />
+    </Form>
   );
 }
