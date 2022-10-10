@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Alarms from './components/Alarms';
 import ModalAlarm from './components/ModalAlarm';
@@ -6,6 +6,7 @@ import { db } from './firebase';
 import { getDocs, collection } from 'firebase/firestore';
 
 function App() {
+  const [alarmas, setAlarmas] = useState([]);
   let alarmasTodas = [];
   (async () => {
     try {
@@ -23,12 +24,12 @@ function App() {
       console.log(e);
     }
   })();
-  console.log(alarmasTodas);
+  setAlarmas(alarmasTodas);
   return (
     <div className="App">
       <h1>Registro de Mediciones y Alarmas Erroneos</h1>
       <ModalAlarm />
-      <Alarms />
+      <Alarms alarmas={alarmas} />
     </div>
   );
 }
