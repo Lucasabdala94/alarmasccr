@@ -4,6 +4,11 @@ import Alarms from './components/Alarms';
 import ModalAlarm from './components/ModalAlarm';
 
 function App() {
+  (async () => {
+    let alarmasTodas = [];
+    
+  })();
+
   return (
     <div className="App">
       <h1>Registro de Mediciones y Alarmas Erroneos</h1>
