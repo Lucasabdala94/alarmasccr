@@ -38,11 +38,12 @@ export default function Alarms() {
             return (
               <div key={alarma.id} className="containerAlarm">
                 <div className='containerAlarm-title'>
-                  <p> ET: {alarma.et}</p>
-                  <p>Nivel de Tension:{alarma.nivelTension}</p>
+                  <p><span> ET: </span>  {alarma.et}</p>
+                  <p><span>Nivel de Tension </span>:{alarma.nivelTension}</p>
                 </div>
-                <div >
-                  <h4>{alarma.alarma}</h4>
+                <div className='containerAlarm-descripcion' >
+                  <h4>Señaliza:</h4>
+                  <p>{alarma.alarma}</p>
                   <p>{alarma.descripcion}</p>
                 </div>
 

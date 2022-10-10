@@ -16,7 +16,8 @@
 .containerAlarm{
     display: flex;
     flex-wrap: wrap;
-    background-color: red;
+    background-color: rgb(6, 15, 44);
+    color: rgb(164, 170, 170);
     margin: 5px;
     border-radius: 12px;
     padding: 15px;
@@ -27,5 +28,10 @@
     display:flex;
     justify-content: space-around;
 }
-
+.containerAlarm-descripcion{
+    color: rgb(10, 10, 38);
+    background-color: rgb(115, 115, 126);
+    padding: 12px 10px;
+    border-radius: 0px 0px 12px 12px ;
+}
 
