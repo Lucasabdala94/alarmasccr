@@ -2,19 +2,11 @@ import React, { useState } from 'react';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
-import ModalError from './ModalError';
-import Modalsucces from './Modalsucces';
+import ModalError from './modal/ModalError';
+import Modalsucces from './modal/Modalsucces';
+import Modalincompleto from './modal/Modalincompleto';
 
-import {
-  Button,
-  Form,
-  Input,
-  Message,
-  TextArea,
-  Modal,
-  Header,
-  Icon,
-} from 'semantic-ui-react';
+import { Button, Form, Input, Message, TextArea } from 'semantic-ui-react';
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
@@ -43,9 +35,8 @@ export default function AlarmsForms() {
     const { alarma, et, descripcion, nivelTension } = values;
 
     const alarmaSan = alarma.toLocaleLowerCase().trim();
-    console.log(alarmaSan);
+
     const etSan = et.toLocaleLowerCase().trim();
-    console.log(etSan);
 
     const descripcionSan = descripcion.toLocaleLowerCase().trim();
 
@@ -161,30 +152,12 @@ export default function AlarmsForms() {
       <Form.Field control={Button} onSubmit={handleInputChange}>
         Agregar
       </Form.Field>
-      <Modal
+      <Modalincompleto
         onClose={() => setError(false)}
         onOpen={() => setError(true)}
         open={error}
-        size="small"
-        blurring="true"
-      >
-        <Header>
-          <Icon name="tasks" />
-          Error al Cargar la Alarma
-        </Header>
-        <Modal.Content>
-          <h3>Todos los campos son obligatorios...</h3>
-          <p>et = {values.et}</p>
-          <p>descripcion = {values.descripcion}</p>
-          <p>nivel de tension={values.nivelTension}</p>
-          <p>alarma={values.alarma}</p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic color="red" onClick={() => setError(false)}>
-            <Icon name="remove" /> cerrar
-          </Button>
-        </Modal.Actions>
-      </Modal>
+        values={values}
+      />
       <ModalError
         onClose={() => setExistente(false)}
         onOpen={() => setExistente(true)}
