@@ -9,7 +9,10 @@ export default function Alarms(props) {
     try {
       const getAlarm = await getDocs(collection(db, '/alarmas'));
       getAlarm.forEach((doc) => {
-        alarmasTodas.push(doc.data());
+        <div>
+          <h3>alarma:</h3>
+          <p>{doc.data().alarma}</p>
+        </div>;
       });
     } catch (e) {
       console.log(e);
