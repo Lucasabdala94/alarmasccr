@@ -6,6 +6,7 @@ import "./alarms.css"
 
 export default function Alarms() {
   const[alarm, setAlarm]=useState([]);
+  const [busqueda,setBusqueda]=useState(null)
   let alarmsAll = [];
   useEffect(() => {
     (async () => {
@@ -15,12 +16,18 @@ export default function Alarms() {
           alarmsAll.push(doc.data())
         });
         setAlarm(alarmsAll);
+        
       } catch (e) {
         console.log(e);
       }
     })();
 
   },[]);
+  const handleInputChange = (e) => {
+    setBusqueda( e.target.value);
+    
+  };
+  console.log(busqueda)
   
   return (
     <div>
@@ -30,6 +37,8 @@ export default function Alarms() {
           className="inputBuscar"
           icon="list"
           placeholder="Buscar Alarmas..."
+          onChange={handleInputChange}
+          
         />
       </div>
       <div className='containerAlarmAll'>
@@ -45,8 +54,7 @@ export default function Alarms() {
                   <h4>Señaliza:</h4>
                   <p>{alarma.alarma}</p>
                   <p>{alarma.descripcion}</p>
-                </div>
-
+                </div> 
 
               </div>
             )
