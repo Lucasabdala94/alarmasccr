@@ -37,10 +37,6 @@ export default function Alarms() {
     })()
   }, [busqueda]);
 
-
-  console.log(filtro)
-
-  
   return (
     <div>
       <h1>Buscador de Alarmas</h1>
@@ -54,7 +50,7 @@ export default function Alarms() {
         />
       </div>
       <div className='containerAlarmAll'>
-        {filtro && 
+        {busqueda && 
           filtro.map((alarma)=>{
             return (
               <div key={alarma.id} className="containerAlarm">
