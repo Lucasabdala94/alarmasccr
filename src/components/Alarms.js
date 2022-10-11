@@ -6,7 +6,8 @@ import "./alarms.css"
 
 export default function Alarms() {
   const[alarm, setAlarm]=useState([]);
-  const [busqueda,setBusqueda]=useState(null)
+  const [busqueda,setBusqueda]=useState(null);
+  const [filtro,setFiltro]=useState(null);
   let alarmsAll = [];
   useEffect(() => {
     (async () => {
@@ -24,10 +25,21 @@ export default function Alarms() {
 
   },[]);
   const handleInputChange = (e) => {
-    setBusqueda( e.target.value);
+    let buscar= e.target.value
+    setBusqueda( buscar.toLocaleLowerCase().trim());
     
   };
-  console.log(busqueda)
+  
+  useEffect(() => {
+    (async ()=>{
+      
+      setFiltro(await filter(alarm,busqueda));
+    })()
+  }, [busqueda]);
+
+
+  console.log(filtro)
+
   
   return (
     <div>
@@ -42,8 +54,8 @@ export default function Alarms() {
         />
       </div>
       <div className='containerAlarmAll'>
-        {alarm.length!==0 ? 
-          alarm.map((alarma)=>{
+        {filtro && 
+          filtro.map((alarma)=>{
             return (
               <div key={alarma.id} className="containerAlarm">
                 <div className='containerAlarm-title'>
@@ -58,12 +70,22 @@ export default function Alarms() {
 
               </div>
             )
-          }):
-          null
+          })
         }
           
          
       </div>
     </div>
   );
+}
+
+
+async function filter(alarmas,busqueda){
+  let resultado = await alarmas.filter((alarma)=>{
+    
+    if(alarma.et.includes(busqueda)){
+      return alarma;
+    }
+  })
+  return resultado;
 }
