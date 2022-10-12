@@ -1,19 +1,16 @@
 /*Contenedor general  */
-.App{
-    display: block;
-    margin: 15px auto;
-    width: 80%;
+.App {
+  display: block;
+  margin: 5px auto;
+  width: 90%;
 }
-
 
 /*Modal*/
-.title-modal{
-    display: flex;
-    justify-content:space-between;
+.title-modal {
+  display: flex;
+  justify-content: space-between;
 }
-.title-modal>h1{
-    display: inline-block;
-    margin:0px auto;
-    
+.title-modal > h1 {
+  display: inline-block;
+  margin: 0px auto;
 }
-

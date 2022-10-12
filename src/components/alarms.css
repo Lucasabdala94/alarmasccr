@@ -30,9 +30,65 @@
   display: flex;
   justify-content: space-around;
   color: rgb(48, 49, 121);
+  border-bottom: 3px solid rgb(48, 49, 121);
+}
+.contaienrAlarm-contenido {
+  font-size: 18px;
+}
+.contaienrAlarm-contenido > span {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 3px;
 }
 .containerAlarm-descripcion {
   color: rgb(48, 49, 121);
   padding: 12px 10px;
   border-radius: 0px 0px 12px 12px;
+}
+.containerAlarm-alarmaScada {
+  font-family: sans-serif;
+  background: black;
+  color: aliceblue;
+  font-size: 22px;
+  border: 0.5px solid rgba(240, 248, 255, 0.884);
+  padding: 3px;
+  padding-left: 14px;
+  margin-bottom: 8px;
+}
+.containerAlarm-alarmaScada-title {
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+.containerAlarm-descripcion {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+
+.buscador {
+  display: block;
+  margin-top: 25px;
+  margin: 25 auto;
+}
+.buscador > h1 {
+  text-align: center;
+  color: rgb(91, 224, 167);
+  letter-spacing: 2px;
+}
+.inputBuscar {
+  -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
+  -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
+  box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
+  margin-bottom: 15px;
+  color: rgb(48, 49, 121);
+  font-weight: bold;
+}
+.ui.icon.input > input {
+  background-color: aliceblue;
+  text-align: left;
+  color: rgb(40, 41, 107);
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 2.5px;
 }
