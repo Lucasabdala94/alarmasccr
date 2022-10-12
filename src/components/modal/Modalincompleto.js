@@ -18,10 +18,18 @@ export default function Modalincompleto(props) {
       </Header>
       <Modal.Content>
         <h3>Todos los campos son obligatorios...</h3>
-        <p>alarma={values.alarma}</p>
-        <p>nivel de tension={values.nivelTension}</p>
-        <p>et = {values.et}</p>
-        <p>descripcion = {values.descripcion}</p>
+        <p>
+          Alarma SCADA = <span>{values.alarma}</span>
+        </p>
+        <p>
+          Nivel de Tension= <span>{values.nivelTension}</span>
+        </p>
+        <p>
+          Estacion Transformadora = <span>{values.et}</span>
+        </p>
+        <p>
+          Descripcion de lo Sucedido = <span>{values.descripcion}</span>
+        </p>
       </Modal.Content>
       <Modal.Actions>
         <Button basic color="red" onClick={onClose}>

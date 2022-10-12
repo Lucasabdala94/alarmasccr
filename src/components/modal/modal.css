@@ -1,6 +1,14 @@
 .ui.modal > .content {
   background-color: rgba(189, 233, 214, 0.322);
 }
+.ui.modal > .content > p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.ui.modal > .content > p > span {
+  margin-left: 18px;
+  font-weight: bold;
+}
 .ui.form .field > label {
   font-size: 18px !important;
   color: rgb(42, 46, 104);
