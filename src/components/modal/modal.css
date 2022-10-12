@@ -54,3 +54,6 @@
 .ui.error.message {
   background-color: rgba(189, 233, 214, 0.075);
 }
+.botonAdd {
+  background-color: rgb(42, 46, 104) !important ;
+}

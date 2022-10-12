@@ -99,6 +99,8 @@ export default function AlarmsForms() {
           'Ingresar exactamente como se lee el Nombre Del Punto de la alarma en Scada respetando espacios',
         ]}
       />
+      <br></br>
+      <br></br>
       <Form.Group widths="equal">
         <Form.Field
           label="Nivel de Tensión"
@@ -134,6 +136,8 @@ export default function AlarmsForms() {
           'Alarmas donde intervienen dos ET, escribir ET emisora de la misma',
         ]}
       />
+      <br></br>
+      <br></br>
       <Form.Field
         control={TextArea}
         label="Agrege una descripción"
