@@ -6,7 +6,7 @@ import ModalAlarm from './components/ModalAlarm';
 function App() {
   return (
     <div className="App">
-      <h1>Registro Alarmas</h1>
+      <h1>Registro de Alarmas</h1>
       <div className="contenedor-centrador">
         <ModalAlarm />
       </div>

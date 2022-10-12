@@ -17,6 +17,7 @@
   width: 50%;
   margin: 0 auto;
   text-align: center;
+  font-size: 18px !important;
   -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
   -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
   box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
@@ -32,8 +33,10 @@
 .title-modal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .title-modal > h1 {
   display: block;
   margin: 0px auto;
+  color: rgb(42, 46, 104);
 }

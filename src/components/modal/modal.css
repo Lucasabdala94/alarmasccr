@@ -1,0 +1,48 @@
+.ui.modal > .content {
+  background-color: rgba(189, 233, 214, 0.322);
+}
+.ui.form .field > label {
+  font-size: 18px !important;
+  color: rgb(42, 46, 104);
+  margin-top: 6px;
+  margin-left: 10px;
+}
+
+.ui.form input[type='text'],
+.ui.form select,
+.ui.form textarea {
+  color: rgb(42, 46, 104) !important;
+  font-weight: bold !important;
+  font-size: 17px;
+  padding-left: 7px;
+  padding: 15px;
+}
+.ui.form input[type='text']::placeholder,
+.ui.form textarea::placeholder {
+  color: rgba(42, 46, 104, 0.568);
+}
+.ui.warning.message {
+  background-color: rgba(189, 233, 214, 0.075);
+  color: rgb(42, 46, 104) !important;
+  margin-bottom: 15px;
+}
+.ui.form select {
+  text-align: center;
+}
+.ui.form select > option {
+  color: rgb(42, 46, 104) !important;
+  font-weight: bold;
+  padding: 7px;
+}
+.ui.form select > option:focus {
+  background-color: rgb(42, 46, 104) !important;
+}
+.ui.negative.button {
+  background-color: rgb(42, 46, 104) !important;
+  border-radius: 50%;
+  font-size: 10px;
+}
+
+.ui.error.message {
+  background-color: rgba(189, 233, 214, 0.075);
+}

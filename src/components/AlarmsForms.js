@@ -87,8 +87,8 @@ export default function AlarmsForms() {
     <Form warning error loading={loading} onSubmit={handleSubmit}>
       <Form.Field
         control={Input}
-        label="Señalizacion Scada"
-        placeholder="Texto en sistema Scada"
+        label="Señalizacion SCADA"
+        placeholder="Texto en sistema SCADA"
         onChange={handleInputChange}
         name="alarma"
         value={values.alarma}

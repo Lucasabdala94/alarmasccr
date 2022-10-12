@@ -26,7 +26,7 @@ function ModalAlarm() {
         className="btn"
         onClick={() => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })}
       >
-        Agregar Alarma
+        Agregar
       </Button>
 
       <Modal

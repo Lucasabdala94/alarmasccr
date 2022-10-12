@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
+import './modal.css';
 
 export default function ModalError(props) {
   const { onClose, onOpen, open } = props;
