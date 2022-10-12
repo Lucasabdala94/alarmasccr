@@ -1,8 +1,31 @@
 /*Contenedor general  */
 .App {
   display: block;
-  margin: 5px auto;
+  margin: 30px auto;
   width: 90%;
+  color: rgb(91, 224, 167);
+}
+.App > h1 {
+  text-align: center;
+}
+.contenedor-centrador {
+  text-align: center;
+}
+.btn {
+  color: rgb(42, 46, 104) !important;
+  font-weight: bold !important;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
+  -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
+  box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
+}
+.btn:hover {
+  width: 52%;
+  -webkit-box-shadow: -11px 6px 14px 3px rgb(91, 224, 167, 0.2) !important;
+  -moz-box-shadow: -11px 6px 14px 3px rgb(91, 224, 167, 0.2) !important;
+  box-shadow: -11px 6px 14px 3px rgb(91, 224, 167, 0.2) !important;
 }
 
 /*Modal*/
@@ -11,6 +34,6 @@
   justify-content: space-between;
 }
 .title-modal > h1 {
-  display: inline-block;
+  display: block;
   margin: 0px auto;
 }

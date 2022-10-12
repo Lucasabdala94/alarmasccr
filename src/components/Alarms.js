@@ -54,7 +54,7 @@ export default function Alarms() {
                     <span> ET : </span> {alarma.et.toUpperCase()}
                   </p>
                   <p className="contaienrAlarm-contenido">
-                    <span>Tension: </span>
+                    <span>Nivel : </span>
                     {alarma.nivelTension}
                   </p>
                 </div>
