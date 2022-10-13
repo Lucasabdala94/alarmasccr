@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'semantic-ui-react';
 import { db } from './../firebase';
-import { getDocs, collection,query,orderBy,where } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy, where } from 'firebase/firestore';
 import './alarms.css';
 
 export default function Alarms() {
@@ -12,11 +12,13 @@ export default function Alarms() {
   useEffect(() => {
     (async () => {
       try {
-        const getAlarm = await getDocs(query(collection(db, '/alarmas'), orderBy("fecha")));
+        const getAlarm = await getDocs(
+          query(collection(db, '/alarmas'), orderBy('fecha'))
+        );
         getAlarm.forEach((doc) => {
           alarmsAll.push(doc.data());
         });
-        console.log(alarmsAll)
+        console.log(alarmsAll);
         setAlarm(alarmsAll);
       } catch (e) {
         console.log(e);
@@ -70,7 +72,10 @@ export default function Alarms() {
                     {alarma.descripcion}
                   </p>
                 </div>
-                <p>fecha:{fecha(alarma.fecha.seconds)}</p>
+                <br></br>
+                <h4 className="containerAlarm-alarmaScada-title">
+                  {capitalizarPrimeraLetra(fecha(alarma.fecha))}
+                </h4>
               </div>
             );
           })}
@@ -89,14 +94,9 @@ async function filter(alarmas, busqueda) {
 }
 
 /*Calculo de fecha*/
-function fecha(registro){
-  const fecha= new Date(registro);
-  
-  const dia = fecha.getDate();
-  const mes = fecha.getMonth();
-  const anio = fecha.getFullYear();
+function fecha(registro) {
+  const calculoFecha = new Date(registro.toDate());
 
-  const calculoFecha = new Date(anio, mes, dia);
   const options = {
     weekday: 'long',
     year: 'numeric',
@@ -105,4 +105,9 @@ function fecha(registro){
   };
   const fechaEntrega = calculoFecha.toLocaleDateString('es-ES', options);
   return fechaEntrega.toString();
+}
+
+/*capitalizar primera letra */
+function capitalizarPrimeraLetra(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
