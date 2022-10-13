@@ -38,7 +38,7 @@ export default function AlarmsForms() {
 
     const etSan = et.toLocaleLowerCase().trim();
 
-    const descripcionSan = descripcion.toLocaleLowerCase().trim();
+    const descripcionSan = descripcion.trim();
 
     if (
       alarma.length !== 0 &&
@@ -68,6 +68,7 @@ export default function AlarmsForms() {
               et: etSan,
               nivelTension: nivelTension,
               id: uuidv4(),
+              fecha:new Date()
             });
             setRegistrada(true);
             setLoading(false);
@@ -119,7 +120,7 @@ export default function AlarmsForms() {
           <option value="380v AC">380 v AC</option>
           <option value="110 DC">110 DC</option>
           <option value="48 DC">48 V DC</option>
-          <option value="Otra">Otra</option>
+          <option value="Otros">Otra</option>
         </Form.Field>
         <Form.Field
           control={Input}
@@ -176,3 +177,5 @@ export default function AlarmsForms() {
     </Form>
   );
 }
+
+

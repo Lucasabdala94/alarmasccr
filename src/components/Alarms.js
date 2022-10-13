@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'semantic-ui-react';
 import { db } from './../firebase';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection,query,orderBy,where } from 'firebase/firestore';
 import './alarms.css';
 
 export default function Alarms() {
@@ -12,10 +12,11 @@ export default function Alarms() {
   useEffect(() => {
     (async () => {
       try {
-        const getAlarm = await getDocs(collection(db, '/alarmas'));
+        const getAlarm = await getDocs(query(collection(db, '/alarmas'), orderBy("fecha")));
         getAlarm.forEach((doc) => {
           alarmsAll.push(doc.data());
         });
+        console.log(alarmsAll)
         setAlarm(alarmsAll);
       } catch (e) {
         console.log(e);
@@ -69,6 +70,7 @@ export default function Alarms() {
                     {alarma.descripcion}
                   </p>
                 </div>
+                <p>fecha:{fecha(alarma.fecha.seconds)}</p>
               </div>
             );
           })}
@@ -84,4 +86,23 @@ async function filter(alarmas, busqueda) {
     }
   });
   return resultado;
+}
+
+/*Calculo de fecha*/
+function fecha(registro){
+  const fecha= new Date(registro);
+  
+  const dia = fecha.getDate();
+  const mes = fecha.getMonth();
+  const anio = fecha.getFullYear();
+
+  const calculoFecha = new Date(anio, mes, dia);
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  const fechaEntrega = calculoFecha.toLocaleDateString('es-ES', options);
+  return fechaEntrega.toString();
 }
