@@ -24,6 +24,7 @@
   font-size: 17px;
   padding-left: 7px;
   padding: 15px;
+  background-color:rgba(186, 239, 216, 0.041) ;
 }
 .ui.form input[type='text']::placeholder,
 .ui.form textarea::placeholder {

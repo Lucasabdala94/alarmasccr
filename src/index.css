@@ -34,9 +34,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 .title-modal > h1 {
   display: block;
   margin: 0px auto;
-  color: rgb(42, 46, 104);
+  color: rgb(17, 21, 85);
 }
