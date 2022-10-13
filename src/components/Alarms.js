@@ -18,7 +18,7 @@ export default function Alarms() {
         getAlarm.forEach((doc) => {
           alarmsAll.push(doc.data());
         });
-        console.log(alarmsAll);
+
         setAlarm(alarmsAll);
       } catch (e) {
         console.log(e);
