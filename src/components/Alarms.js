@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'semantic-ui-react';
 import { db } from './../firebase';
-import { getDocs, collection, query, orderBy, where } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy} from 'firebase/firestore';
 import './alarms.css';
+import ListAlarma from './ListAlarma';
 
-export default function Alarms() {
+export default function Alarms(props) {
   const [alarm, setAlarm] = useState([]);
+  //Almacena la busqueda.
   const [busqueda, setBusqueda] = useState(null);
   const [filtro, setFiltro] = useState(null);
+  
+  const {reload}= props;
+
+
   let alarmsAll = [];
+
   useEffect(() => {
     (async () => {
       try {
         const getAlarm = await getDocs(
-          query(collection(db, '/alarmas'), orderBy('fecha'))
+          query(collection(db, '/alarmas'), orderBy('fecha','desc'))
         );
         getAlarm.forEach((doc) => {
           alarmsAll.push(doc.data());
         });
 
         setAlarm(alarmsAll);
+        
       } catch (e) {
         console.log(e);
       }
     })();
-  }, []);
+  }, [reload]);
   const handleInputChange = (e) => {
     let buscar = e.target.value;
     setBusqueda(buscar.toLocaleLowerCase().trim());
@@ -48,37 +56,13 @@ export default function Alarms() {
         />
       </div>
       <div className="containerAlarmAll">
-        {busqueda &&
+        {busqueda ? 
           filtro.map((alarma) => {
-            return (
-              <div key={alarma.id} className="containerAlarm">
-                <div className="containerAlarm-title">
-                  <p className="contaienrAlarm-contenido">
-                    <span> ET : </span> {alarma.et.toUpperCase()}
-                  </p>
-                  <p className="contaienrAlarm-contenido">
-                    <span>Nivel : </span>
-                    {alarma.nivelTension}
-                  </p>
-                </div>
-                <div className="containerAlarm-descripcion">
-                  <h4 className="containerAlarm-alarmaScada-title">
-                    Señaliza:
-                  </h4>
-                  <p className="containerAlarm-alarmaScada">
-                    {alarma.alarma.toUpperCase()}
-                  </p>
-                  <p className="containerAlarm-descripcion">
-                    {alarma.descripcion}
-                  </p>
-                </div>
-                <br></br>
-                <h4 className="containerAlarm-alarmaScada-title">
-                  {capitalizarPrimeraLetra(fecha(alarma.fecha))}
-                </h4>
-              </div>
-            );
-          })}
+            return (<ListAlarma key={alarma.id} alarma={alarma} />)
+            
+          }) : alarm.map((alarma) => {
+            return <ListAlarma key={alarma.id} alarma={alarma}/>
+          }) }
       </div>
     </div>
   );
@@ -93,21 +77,5 @@ async function filter(alarmas, busqueda) {
   return resultado;
 }
 
-/*Calculo de fecha*/
-function fecha(registro) {
-  const calculoFecha = new Date(registro.toDate());
 
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  const fechaEntrega = calculoFecha.toLocaleDateString('es-ES', options);
-  return fechaEntrega.toString();
-}
 
-/*capitalizar primera letra */
-function capitalizarPrimeraLetra(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}

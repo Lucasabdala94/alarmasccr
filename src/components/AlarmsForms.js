@@ -7,6 +7,7 @@ import Modalsucces from './modal/Modalsucces';
 import Modalincompleto from './modal/Modalincompleto';
 
 import { Button, Form, Input, Message, TextArea } from 'semantic-ui-react';
+import { useAuth } from '../context/authContext';
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,8 @@ export default function AlarmsForms() {
   const [existente, setExistente] = useState(false);
   const [registrada, setRegistrada] = useState(false);
 
+  const {user}=useAuth();
+  
   const initialStateValue = {
     alarma: '',
     et: '',
@@ -47,7 +50,7 @@ export default function AlarmsForms() {
       nivelTension.length !== 1
     ) {
       setLoading(true);
-
+      
       (async () => {
         try {
           let descriptionAll = [];
@@ -57,7 +60,7 @@ export default function AlarmsForms() {
           });
 
           let existe = descriptionAll.includes(alarmaSan + etSan);
-
+          
           if (existe === true) {
             setLoading(false);
             setExistente(true);
@@ -68,7 +71,8 @@ export default function AlarmsForms() {
               et: etSan,
               nivelTension: nivelTension,
               id: uuidv4(),
-              fecha:new Date()
+              fecha:new Date(),
+              creado: user?.displayName || user?.email,
             });
             setRegistrada(true);
             setLoading(false);
@@ -81,6 +85,7 @@ export default function AlarmsForms() {
     } else {
       setError(true);
       setLoading(false);
+      console.log(user);
     }
   };
 

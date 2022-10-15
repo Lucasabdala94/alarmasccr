@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseApp = initializeApp({
@@ -15,11 +15,4 @@ export const auth = getAuth(firebaseApp);
 
 export const db = getFirestore(firebaseApp);
 
-// detect auth state.
-onAuthStateChanged(auth, (user) => {
-  if (user !== null) {
-    console.log('Usuaria logeado');
-  } else {
-    console.log('Usuario no logeado');
-  }
-});
+

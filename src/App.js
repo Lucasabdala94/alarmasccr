@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Alarms from './components/Alarms';
-import ModalAlarm from './components/ModalAlarm';
+import {Routes,Route} from "react-router-dom";
+import { AuthProvider } from './context/authContext';
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+import ProtectedRoutes from './components/ProtectedRoutes';
+
 
 function App() {
  
   return (
-    <div className="App">
-      <h1>Registro de Alarmas</h1>
-      <div className="contenedor-centrador">
-        <ModalAlarm />
-      </div>
-
-      <Alarms />
-    </div>
+    <AuthProvider>
+    <Routes>
+      <Route path='/' element={<ProtectedRoutes><Home/></ProtectedRoutes>} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/register' element={<Register/>} />
+    </Routes>
+    </AuthProvider> 
   );
 }
 

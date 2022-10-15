@@ -36,7 +36,8 @@
   -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
   -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
   box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
-  margin-top: 10px;
+  margin-top: 25px;
+  margin-bottom: 15px;
 }
 .containerAlarm-title {
   display: flex;
@@ -77,7 +78,7 @@
   font-size: 1em;
   border: 0.5px solid rgba(240, 248, 255, 0.884);
   padding: 3px;
-  text-align: ;
+
   margin-bottom: 8px;
 }
 

@@ -13,12 +13,15 @@ function exampleReducer(state, action) {
   }
 }
 
-function ModalAlarm() {
+function ModalAlarm(props) {
   const [state, dispatch] = React.useReducer(exampleReducer, {
     open: false,
     dimmer: undefined,
   });
   const { open, dimmer } = state;
+  const {setRelaod,reload}=props;
+
+  
 
   return (
     <div>
@@ -32,7 +35,10 @@ function ModalAlarm() {
       <Modal
         dimmer={dimmer}
         open={open}
-        onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
+        onClose={() => {
+          dispatch({ type: 'CLOSE_MODAL' })
+          
+        }}
       >
         <Modal.Header>
           <div className="title-modal">
@@ -41,7 +47,10 @@ function ModalAlarm() {
               <Button
                 className="title-modal-salir"
                 negative
-                onClick={() => dispatch({ type: 'CLOSE_MODAL' })}
+                onClick={() =>{
+                  dispatch({ type: 'CLOSE_MODAL' });
+                  setRelaod(!reload);
+                }}
               >
                 X
               </Button>
