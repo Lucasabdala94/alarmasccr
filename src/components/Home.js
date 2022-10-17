@@ -21,7 +21,7 @@ function Home() {
   
     return (
         <div className="App">
-          <div>
+          <div className="header">
             <h5>{user?.displayName || user?.email}</h5>
             <button onClick={handleLogout}>Salir</button>  
           </div>
