@@ -26,10 +26,10 @@ export default function ListAlarma(props) {
 
       </div>
       <br></br>
-      <h4 className="containerAlarm-alarmaScada-title">
+      <p className="containerAlarm-alarmaScada-historial">
         {capitalizarPrimeraLetra(fecha(alarma.fecha))}
-      </h4>
-      <p className="containerAlarm-alarmaScada-title">
+      </p>
+      <p className="containerAlarm-alarmaScada-historial">
         {alarma.creado}
       </p>
     </div>
