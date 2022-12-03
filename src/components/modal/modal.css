@@ -1,5 +1,5 @@
 .ui.modal > .content {
-  background-color: rgba(189, 233, 214, 0.322);
+  background-color: rgba(255, 255, 255);
 }
 .ui.modal > .content > p {
   font-size: 20px;
@@ -24,16 +24,16 @@
   font-size: 17px;
   padding-left: 7px;
   padding: 15px;
-  background-color:rgba(186, 239, 216, 0.041) ;
+  background-color:rgba(255, 255, 255) ;
 }
 .ui.form input[type='text']::placeholder,
 .ui.form textarea::placeholder {
   color: rgba(42, 46, 104, 0.568);
 }
 .ui.warning.message {
-  background-color: rgba(189, 233, 214, 0.075);
-  color: rgb(42, 46, 104) !important;
-  margin-bottom: 15px;
+  background-color: rgba(255,255,255)!important;
+  color: rgba(6, 9, 51, 0.8) !important;
+  margin-bottom: 10px;
 }
 .ui.form select {
   text-align: center;
@@ -48,13 +48,13 @@
 }
 .ui.negative.button {
   background-color: rgb(42, 46, 104) !important;
-  border-radius: 50%;
+  border-radius: 30%;
   font-size: 10px;
 }
 
 .ui.error.message {
-  background-color: rgba(189, 233, 214, 0.075);
+  background-color: rgba(255,255,255);
 }
 .botonAdd {
-  background-color: rgb(42, 46, 104) !important ;
+  background-color: rgb(12, 18, 102) !important ;
 }

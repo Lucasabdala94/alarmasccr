@@ -65,6 +65,7 @@ export default function AlarmsForms() {
             setLoading(false);
             setExistente(true);
           } else {
+            // eslint-disable-next-line
             const docRef = await addDoc(collection(db, '/alarmas'), {
               alarma: alarmaSan,
               descripcion: descripcionSan,
@@ -94,7 +95,6 @@ export default function AlarmsForms() {
       <Form.Field
         control={Input}
         label="Señalizacion SCADA"
-        placeholder="Texto en sistema SCADA"
         onChange={handleInputChange}
         name="alarma"
         value={values.alarma}
@@ -129,7 +129,7 @@ export default function AlarmsForms() {
         </Form.Field>
         <Form.Field
           control={Input}
-          label="Nombre Abreviado de ET"
+          label="Nombre Abreviado de ET "
           placeholder="Ej SCO"
           onChange={handleInputChange}
           name="et"
@@ -147,7 +147,6 @@ export default function AlarmsForms() {
       <Form.Field
         control={TextArea}
         label="Agrege una descripción"
-        placeholder="Sea breve"
         onChange={handleInputChange}
         name="descripcion"
         value={values.descripcion}
@@ -155,7 +154,7 @@ export default function AlarmsForms() {
       <Message
         warning
         list={[
-          'Ingresar fecha y hora ',
+          'Ingresar fecha y hora de los eventos ',
           'Incluir informacion del personal informado',
         ]}
       />
