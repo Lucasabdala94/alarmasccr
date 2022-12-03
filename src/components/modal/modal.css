@@ -58,3 +58,11 @@
 .botonAdd {
   background-color: rgb(12, 18, 102) !important ;
 }
+.field>.ui{
+  color:rgba(255,255,255)!important;
+  background-color: rgba(6, 9, 51, 0.8);
+}
+.field>.ui:hover{
+  background-color: rgb(32, 45, 226);
+  border: 1px solid rgb(0,0,0);
+}
