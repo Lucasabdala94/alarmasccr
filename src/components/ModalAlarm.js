@@ -25,13 +25,14 @@ function ModalAlarm(props) {
 
   return (
     <div>
+      {/* BOTON PARA AGREGAR ALARAM */}
       <Button
         className="btn"
         onClick={() => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })}
       >
         Agregar
       </Button>
-
+      {/* MODAL PARA AGREGAR ALARMA */}
       <Modal
         dimmer={dimmer}
         open={open}

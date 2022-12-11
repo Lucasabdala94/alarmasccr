@@ -33,9 +33,7 @@
   padding: 15px;
   flex-direction: column;
   width: 100%;
-  -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
-  -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
-  box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   margin-top: 25px;
   margin-bottom: 15px;
 }
@@ -43,7 +41,8 @@
   display: flex;
   justify-content: space-around;
   color: rgb(244, 244, 247);
-  border-bottom: 3px solid rgb(48, 49, 121);
+  border-bottom: 3px solid rgb(187 187 192);
+  padding-bottom: 3px;
 }
 .contaienrAlarm-contenido {
   font-size: 18px;
@@ -72,7 +71,7 @@
 }
 .containerAlarm-alarmaScada {
   font-family: sans-serif;
-  background: black;
+  background: rgba(0, 0, 0, 0.808);
   border-radius: 4px;
   color: aliceblue;
   font-size: 1em;
@@ -92,21 +91,29 @@
   letter-spacing: 2px;
 }
 .inputBuscar {
-  -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
-  -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
-  box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  -moz-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   margin-bottom: 15px;
   color: rgb(48, 49, 121);
   font-weight: bold;
 }
 .ui.icon.input > input {
-  background-color: aliceblue;
+  background-color: rgb(219, 220, 221);
   text-align: left;
   color: rgb(40, 41, 107);
   font-weight: bold;
   font-size: 18px;
-  letter-spacing: 2.5px;
+  letter-spacing: 2.3px;
+  padding:10px;
 }
+@media screen and (min-width: 768px) {
+  .contenedor-footer-alarm{
+    display:flex;
+    justify-content: space-between;
+  }
+}
+
 .containerAlarm-alarmaScada-historial{
   text-align: right;
   color: rgb(244, 244, 247);

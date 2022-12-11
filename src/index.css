@@ -14,19 +14,17 @@
 .btn {
   color: rgb(42, 46, 104) !important;
   font-weight: bold !important;
-  width: 50%;
   margin: 0 auto;
   text-align: center;
   font-size: 18px !important;
-  -webkit-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
-  -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
-  box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34) !important;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 .btn:hover {
-  width: 52%;
-  -webkit-box-shadow: -11px 6px 14px 3px rgb(91, 224, 167, 0.2) !important;
-  -moz-box-shadow: -11px 6px 14px 3px rgb(91, 224, 167, 0.2) !important;
-  box-shadow: -11px 6px 14px 3px rgb(91, 224, 167, 0.2) !important;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 }
 
 /*Modal*/

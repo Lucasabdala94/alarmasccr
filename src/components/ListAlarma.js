@@ -3,35 +3,38 @@ export default function ListAlarma(props) {
   return (
     <div key={alarma.id} className="containerAlarm">
       <div className="containerAlarm-title">
-        <p className="contaienrAlarm-contenido">
+        <div className="contaienrAlarm-contenido">
           <span> ET : </span> {alarma.et.toUpperCase()}
-        </p>
-        <p className="contaienrAlarm-contenido">
+        </div>
+        <div className="contaienrAlarm-contenido">
           <span>Nivel : </span>
           {alarma.nivelTension}
-        </p>
+        </div>
       </div>
       <div className="containerAlarm-descripcion">
         <h4 className="containerAlarm-alarmaScada-title">
           Señaliza:
         </h4>
-        <p className="containerAlarm-alarmaScada">
+        <div className="containerAlarm-alarmaScada">
           {alarma.alarma.toUpperCase()}
-        </p>
+        </div>
         <div>
-          <p className="containerAlarm-descripcion">
+          <div className="containerAlarm-descripcion">
             {alarma.descripcion}
-          </p>
+          </div>
         </div>
 
       </div>
       <br></br>
-      <p className="containerAlarm-alarmaScada-historial">
-        {capitalizarPrimeraLetra(fecha(alarma.fecha))}
-      </p>
-      <p className="containerAlarm-alarmaScada-historial">
-        {alarma.creado}
-      </p>
+      <div className="contenedor-footer-alarm">
+        <p className="containerAlarm-alarmaScada-historial">
+            {alarma.creado}
+        </p>
+        <p className="containerAlarm-alarmaScada-historial">
+          {capitalizarPrimeraLetra(fecha(alarma.fecha))}
+        </p>
+        
+      </div>
     </div>
   );
 }
