@@ -1,27 +1,29 @@
-import React from 'react';
+import React,{useReducer} from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import AlarmsForms from './AlarmsForms';
+import AlarmsForms from './Form/AlarmsForms';
 
-function exampleReducer( action) {
-  switch (action.type) {
-    case 'OPEN_MODAL':
-      return { open: true, dimmer: action.dimmer };
-    case 'CLOSE_MODAL':
-      return { open: false };
-    default:
-      throw new Error();
-  }
-}
+export default function AgregarAlarma(props) {
 
-function ModalAlarm(props) {
-  const [state, dispatch] = React.useReducer(exampleReducer, {
+  /* Props para recargar el listado de alarmas una vez que se registro una nueva. */
+  const {setRelaod,reload}=props;
+
+  const [state, dispatch] = useReducer(AgregarAlarma, {
     open: false,
     dimmer: undefined,
   });
   const { open, dimmer } = state;
-  const {setRelaod,reload}=props;
-
   
+  /* funcion para manejar apertura y cierre del modal agregar alarma */
+  function AgregarAlarma( time,action) {
+    switch (action.type) {
+      case 'OPEN_MODAL':
+        return { open: true, dimmer: action.dimmer };
+      case 'CLOSE_MODAL':
+        return { open: false };
+      default:
+        throw new Error();
+    }
+  }
 
   return (
     <div>
@@ -66,4 +68,3 @@ function ModalAlarm(props) {
   );
 }
 
-export default ModalAlarm;

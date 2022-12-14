@@ -67,7 +67,7 @@ function Login() {
         <div className="conternedorFormAcces">
             <form className="formAcces" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" placeholder="email@gmail.com" onChange={handleChange}/>
+                <input type="text" name="email" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" onChange={handleChange} />
                 <button>Login</button>
@@ -78,7 +78,8 @@ function Login() {
             {error && <p className="errorForm">{error}</p>}
             
             <div>
-                <p>Aun no tienes Cuenta...Ir al <span onClick={()=>{navigate('/register')}}>Registro</span>.</p>
+                <p>Aun no tienes Cuenta...</p>
+                <button onClick={()=>{navigate('/register')}}>Ir al Registro</button>
             </div>
             <div>
                 <p>Olvidaste tu contraseña...<span onClick={handleResetPassword}>Cambiar Contraseña</span>.</p>

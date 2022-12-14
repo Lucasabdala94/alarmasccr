@@ -1,10 +1,14 @@
-import Alarms from "./Alarms";
-import ModalAlarm from "./ModalAlarm";
+import BuscadorAlarms from "./BuscadorAlarms";
+import ModalAgregarAlarm from "./AgregarAlarma";
 import { useAuth } from "../context/authContext";
 import { useState } from "react";
 
-function Home() {
+export default function Home() {
+
+  // constantes para recargar las alarmas.
   const [reload, setRelaod] = useState(false);
+
+  // Estados del contexto general.
   const { user, logout } = useAuth();
 
   //Funcion para cerrar sesion en la aplicacion.
@@ -28,12 +32,10 @@ function Home() {
 
       <h1>Registro de Alarmas</h1>
       <div className="contenedor-centrador">
-        <ModalAlarm setRelaod={setRelaod} reload={reload} />
+        <ModalAgregarAlarm setRelaod={setRelaod} reload={reload} />
       </div>
 
-      <Alarms reload={reload} />
+      <BuscadorAlarms reload={reload} />
     </div>
   );
 }
-
-export default Home;

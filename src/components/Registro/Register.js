@@ -56,7 +56,7 @@ function Register() {
                 <input type="text" name="email" placeholder="email@gmail.com" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" onChange={handleChange} />
-                <button>Register</button>
+                <button>Registrarse con Correo</button>
             </form>
             <div>
                 <button onClick={handleGoogleSignin}>Registro con Google</button>

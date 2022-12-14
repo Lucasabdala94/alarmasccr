@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { db } from './../firebase';
+import { db } from './../../firebase';
 import { v4 as uuidv4 } from 'uuid';
-import ModalError from './modal/ModalError';
-import Modalsucces from './modal/Modalsucces';
-import Modalincompleto from './modal/Modalincompleto';
+import ModalError from './../modal/ModalError';
+import Modalsucces from './../modal/Modalsucces';
+import Modalincompleto from './../modal/Modalincompleto';
 
 import { Button, Form, Input, Message, TextArea } from 'semantic-ui-react';
-import { useAuth } from '../context/authContext';
+import { useAuth } from '../../context/authContext';
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
@@ -158,21 +158,18 @@ export default function AlarmsForms() {
       <Form.Field control={Button} onSubmit={handleInputChange}>
         Agregar
       </Form.Field>
-
-      //Modal cuiando falta agregar campos
+      
       <Modalincompleto
         onClose={() => setError(false)}
         onOpen={() => setError(true)}
         open={error}
         values={values}
       />
-      //Modal cuiando de error por repetir alarma.
       <ModalError
         onClose={() => setExistente(false)}
         onOpen={() => setExistente(true)}
         open={existente}
       />
-      //registro correcto de alarma
       <Modalsucces
         onClose={() => setRegistrada(false)}
         onOpen={() => setRegistrada(true)}
