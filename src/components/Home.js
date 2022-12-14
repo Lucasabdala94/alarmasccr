@@ -3,11 +3,6 @@ import ModalAlarm from "./ModalAlarm";
 import { useAuth } from "../context/authContext";
 import { useState } from "react";
 
-
-
-
-
-
 function Home() {
   const [reload, setRelaod] = useState(false);
   const { user, logout } = useAuth();
