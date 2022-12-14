@@ -105,8 +105,7 @@ export default function AlarmsForms() {
           'Ingresar exactamente como se lee el Nombre Del Punto de la alarma en Scada respetando espacios',
         ]}
       />
-      <br></br>
-      <br></br>
+      
       <Form.Group widths="equal">
         <Form.Field
           label="Nivel de Tensión"
@@ -142,8 +141,6 @@ export default function AlarmsForms() {
           'Alarmas donde intervienen dos ET, escribir ET emisora de la misma',
         ]}
       />
-      <br></br>
-      <br></br>
       <Form.Field
         control={TextArea}
         label="Agrege una descripción"
@@ -161,18 +158,21 @@ export default function AlarmsForms() {
       <Form.Field control={Button} onSubmit={handleInputChange}>
         Agregar
       </Form.Field>
+
+      //Modal cuiando falta agregar campos
       <Modalincompleto
         onClose={() => setError(false)}
         onOpen={() => setError(true)}
         open={error}
         values={values}
       />
+      //Modal cuiando de error por repetir alarma.
       <ModalError
         onClose={() => setExistente(false)}
         onOpen={() => setExistente(true)}
         open={existente}
       />
-
+      //registro correcto de alarma
       <Modalsucces
         onClose={() => setRegistrada(false)}
         onOpen={() => setRegistrada(true)}

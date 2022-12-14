@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import AlarmsForms from './AlarmsForms';
 
-function exampleReducer(state, action) {
+function exampleReducer( action) {
   switch (action.type) {
     case 'OPEN_MODAL':
       return { open: true, dimmer: action.dimmer };
