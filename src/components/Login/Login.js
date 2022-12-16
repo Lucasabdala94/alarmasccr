@@ -70,19 +70,25 @@ function Login() {
                 <input type="text" name="email" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" onChange={handleChange} />
-                <button>Login</button>
+                
             </form>   
-            <div>
-                <button onClick={handleGoogleSignin}>Login con Google</button>
+            <div className="contenedor-btn">
+                <button className="btn-primary">Login</button>
+                <button className="btn-primary" onClick={handleGoogleSignin}>Login con Google</button>
             </div>
             {error && <p className="errorForm">{error}</p>}
             
             <div>
                 <p>Aun no tienes Cuenta...</p>
-                <button onClick={()=>{navigate('/register')}}>Ir al Registro</button>
+                <div className="contenedor-btn-secundary">
+                <button className="btn-secundary" onClick={()=>{navigate('/register')}}>Ir al Registro</button>
+                </div>
             </div>
             <div>
-                <p>Olvidaste tu contraseña...<span onClick={handleResetPassword}>Cambiar Contraseña</span>.</p>
+                <p>Olvidaste tu contraseña...</p>
+                <div className="contenedor-btn-secundary">
+                <button className="btn-secundary" onClick={handleResetPassword}>Cambiar Contraseña</button>
+                </div>
             </div>
         </div>
         

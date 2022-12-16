@@ -56,14 +56,19 @@ function Register() {
                 <input type="text" name="email" placeholder="email@gmail.com" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" onChange={handleChange} />
-                <button>Registrarse con Correo</button>
+                
             </form>
-            <div>
-                <button onClick={handleGoogleSignin}>Registro con Google</button>
+            <div className="contenedor-btn">
+                <button className="btn-primary">Registrarse con Correo</button>
+                <button className="btn-primary" onClick={handleGoogleSignin}>Registro con Google</button>
             </div>
             {error && <p className="errorForm">{error}</p>}
             <div>
-                <p>Ya se encuentra registrado...Acceder a <span onClick={()=>{navigate('/login')}}>Cuenta</span>.</p>
+                <p>Ya tengo una cuenta registrada</p>
+                <div className="contenedor-btn-secundary">
+                    <button className="btn-secundary" onClick={()=>{navigate('/login')}}>Ir al Login</button>
+                </div>
+                
             </div>
         </div>
         

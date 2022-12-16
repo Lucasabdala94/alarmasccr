@@ -15,34 +15,53 @@
     -moz-box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
     box-shadow: -11px 6px 14px 3px rgba(0, 0, 0, 0.34);
 }
-.conternedorFormAcces>div>button {
+.contenedor-btn{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding-top: 5px;
+}
+.btn-primary{
+    text-align: center;
     color: rgb(40, 41, 107);
     font-weight: bold;
     font-size: 16px;
-    border: 1px solid rgb(6, 7, 63);
-    -webkit-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(16, 8, 100, 0.75);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(16, 8, 100, 0.75);
+    box-shadow: 2px 4px 5px 0px rgba(16, 8, 100, 0.75);
     padding: 7px;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     width: 213px;
-
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid rgb(40, 41, 107) ;
 }
+.contenedor-btn-secundary{
+    display: block;
+    text-align: center;
+}
+
+.btn-secundary{
+    text-align: center;
+    color: rgb(40, 41, 107);
+    font-weight: bold;
+    font-size: 14px;
+    padding: 3px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 0.5px solid rgb(40, 41, 107) ;
+}
+
 .conternedorFormAcces>div>p{
     color: rgb(40, 41, 107);
     font-size: 16px;
     margin-top: 5px;
-    text-align: left;
-    
+    margin-bottom: 5px;
+    text-align: center;
 }
-.conternedorFormAcces>div>p>span{
 
-    font-weight: bold;
-    color: rgb(95 183 145);
-}
-.conternedorFormAcces>div>p>span:hover{
-    cursor: pointer;
-}
 .formAcces {
     display: flex;
     flex-direction: column;
@@ -55,28 +74,17 @@
 .formAcces>label {
     margin-top: 10px;
     margin-bottom: 4px;
+    margin-left: 10px;
 }
 
 .formAcces>input {
     font-size: 16px;
     padding: 8px;
     border: 1px solid rgb(40, 41, 107) ;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
-.formAcces>button {
-    margin-top: 13px;
-    color: rgb(40, 41, 107);
-    font-weight: bold;
-    font-size: 16px;
-    border: 1px solid rgb(6, 7, 63);
-    -webkit-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    padding: 7px;
-    margin-bottom: 5px;
 
-}
 .formAcces>button:hover{
     cursor: pointer;
 }
