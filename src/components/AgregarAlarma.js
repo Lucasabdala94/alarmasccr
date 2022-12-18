@@ -45,7 +45,7 @@ export default function AgregarAlarma(props) {
       >
         <Modal.Header>
           <div className="title-modal">
-            <h1>Agregar alarma</h1>
+            <h1>REGISTRO</h1>
             <Modal.Actions>
               <Button
                 className="title-modal-salir"

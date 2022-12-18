@@ -59,7 +59,7 @@ function Register() {
                 
             </form>
             <div className="contenedor-btn">
-                <button className="btn-primary" onClick={handleSubmit}>Registrarse con Correo</button>
+                <button className="btn-primary" onMouseEnter={handleSubmit}>Registrarse con Correo</button>
                 <button className="btn-primary" onClick={handleGoogleSignin}>Registro con Google</button>
             </div>
             {error && <p className="errorForm">{error}</p>}

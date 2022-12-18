@@ -73,7 +73,8 @@ function Login() {
                 
             </form>   
             <div className="contenedor-btn">
-                <button className="btn-primary" onClick={handleSubmit}>Login</button>
+                <button className="btn-primary" onClick={handleSubmit} 
+ >Login</button>
                 <button className="btn-primary" onClick={handleGoogleSignin}>Login con Google</button>
             </div>
             {error && <p className="errorForm">{error}</p>}

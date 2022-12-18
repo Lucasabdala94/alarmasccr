@@ -25,10 +25,10 @@
 .containerAlarm {
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(22, 4, 77);
+  background-color: rgb(255 255 255 / 79%);
   color: rgb(255, 255, 255);
   margin: 5px;
-  border: 3px solid rgba(0, 0, 0, 0.34);
+  border: 1px solid rgba(0, 0, 0, 0.774);
   border-radius: 12px;
   padding: 15px;
   flex-direction: column;
@@ -40,8 +40,8 @@
 .containerAlarm-title {
   display: flex;
   justify-content: space-around;
-  color: rgb(244, 244, 247);
-  border-bottom: 3px solid rgb(187 187 192);
+  color: rgba(0, 0, 0, 0.849);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.774);
   padding-bottom: 3px;
 }
 .contaienrAlarm-contenido {
@@ -54,13 +54,14 @@
   margin-right: 3px;
 }
 .containerAlarm-descripcion {
-  color: rgb(244, 244, 247);;
+  color: rgb(22, 4, 77);
   padding: 12px 2px;
   border-radius: 0px 0px 12px 12px;
 }
 
 .containerAlarm-alarmaScada-title {
   margin-bottom: 4px;
+  margin-left: 10px;
   font-size: 18px;
 }
 .containerAlarm-descripcion {
@@ -73,7 +74,7 @@
   font-family: sans-serif;
   background: rgba(0, 0, 0, 0.808);
   border-radius: 4px;
-  color: aliceblue;
+  color:rgb(249, 249, 250);
   font-size: 1em;
   border: 0.5px solid rgba(240, 248, 255, 0.884);
   padding: 3px;
@@ -116,6 +117,6 @@
 
 .containerAlarm-alarmaScada-historial{
   text-align: right;
-  color: rgb(244, 244, 247);
+  color: rgb(22, 4, 77);
   margin-bottom: 0px;
 }

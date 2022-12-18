@@ -6,7 +6,7 @@ import ModalError from './../modal/ModalError';
 import Modalsucces from './../modal/Modalsucces';
 import Modalincompleto from './../modal/Modalincompleto';
 
-import { Button, Form, Input, Message, TextArea } from 'semantic-ui-react';
+import { Form, Input, Message, TextArea } from 'semantic-ui-react';
 import { useAuth } from '../../context/authContext';
 
 export default function AlarmsForms() {
@@ -155,8 +155,8 @@ export default function AlarmsForms() {
           'Incluir informacion del personal informado',
         ]}
       />
-      <Form.Field control={Button} onSubmit={handleInputChange}>
-        Agregar
+      <Form.Field>
+        <button className='botonAdd' onSubmit={handleInputChange}>Agregar</button>
       </Form.Field>
       
       <Modalincompleto

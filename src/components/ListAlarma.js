@@ -1,4 +1,8 @@
+import { useAuth } from "../context/authContext";
+
+
 export default function ListAlarma(props) {
+  const { user } = useAuth();
   const { alarma } = props;
   return (
     <div key={alarma.id} className="containerAlarm">
@@ -10,11 +14,14 @@ export default function ListAlarma(props) {
           <span>Nivel : </span>
           {alarma.nivelTension}
         </div>
+        {user?.email=== "administrador@gmail.com" && 
+          (<div >
+            <button className="btn-Eliminar">X</button>
+          </div>)
+        }
+        
       </div>
       <div className="containerAlarm-descripcion">
-        <h4 className="containerAlarm-alarmaScada-title">
-          Señaliza:
-        </h4>
         <div className="containerAlarm-alarmaScada">
           {alarma.alarma.toUpperCase()}
         </div>

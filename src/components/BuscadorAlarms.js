@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Input } from 'semantic-ui-react';
 import { db } from '../firebase';
 import { getDocs, collection, query, orderBy} from 'firebase/firestore';
-import './alarms.css';
+
 import ListAlarma from './ListAlarma';
+import './alarms.css';
 
 export default function BuscadorAlarms(props) {
   const [alarm, setAlarm] = useState([]);
+  
   //Almacena la busqueda.
   const [busqueda, setBusqueda] = useState(null);
   const [filtro, setFiltro] = useState(null);
