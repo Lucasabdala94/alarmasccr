@@ -23,11 +23,9 @@ export default function Home() {
   return (
     <div className="App">
       <div className="header">
-        <h5>{user?.displayName || user?.email}</h5>
-
+        <h3>{user?.displayName || user?.email}</h3>
         {/* Boton para cerrar sesion */}
-        <button onClick={handleLogout}>Salir</button>
-
+        <button onClick={handleLogout} className="header-btn">salir</button>
       </div>
 
       <h1>Registro de Alarmas</h1>

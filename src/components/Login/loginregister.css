@@ -20,7 +20,8 @@
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    padding-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 .btn-primary{
     text-align: center;
@@ -80,8 +81,10 @@
 .formAcces>input {
     font-size: 16px;
     padding: 8px;
-    border: 1px solid rgb(40, 41, 107) ;
+    border: 1px solid rgb(23 44 102);
     border-radius: 10px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
 }
 
 
@@ -89,7 +92,7 @@
     cursor: pointer;
 }
 .errorForm{
-    color: rgb(203, 183, 183);
+    color: rgb(255, 255, 255);
     background-color: rgb(40, 41, 107);
     padding:10px;
     border-radius: 12px;

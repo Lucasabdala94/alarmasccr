@@ -53,13 +53,13 @@ function Register() {
             
             <form  className="formAcces" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" placeholder="email@gmail.com" onChange={handleChange}/>
+                <input type="text" name="email" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" onChange={handleChange} />
                 
             </form>
             <div className="contenedor-btn">
-                <button className="btn-primary" onMouseEnter={handleSubmit}>Registrarse con Correo</button>
+                <button className="btn-primary" onClick={handleSubmit}>Registrarse con Correo</button>
                 <button className="btn-primary" onClick={handleGoogleSignin}>Registro con Google</button>
             </div>
             {error && <p className="errorForm">{error}</p>}

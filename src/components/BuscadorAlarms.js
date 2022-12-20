@@ -25,9 +25,12 @@ export default function BuscadorAlarms(props) {
           query(collection(db, '/alarmas'), orderBy('fecha','desc'))
         );
         getAlarm.forEach((doc) => {
-          alarmsAll.push(doc.data());
+          alarmsAll.push({data:doc.data(),
+            idDoc:doc.id
+          });
+          
         });
-
+        
         setAlarm(alarmsAll);
         
       } catch (e) {
@@ -60,10 +63,10 @@ export default function BuscadorAlarms(props) {
       <div className="containerAlarmAll">
         {busqueda ? 
           filtro.map((alarma) => {
-            return (<ListAlarma key={alarma.id} alarma={alarma} />)
+            return (<ListAlarma key={alarma?.data?.id} alarma={alarma} />)
             
           }) : alarm.map((alarma) => {
-            return <ListAlarma key={alarma.id} alarma={alarma}/>
+            return <ListAlarma key={alarma?.data?.id} alarma={alarma}/>
           }) }
       </div>
     </div>

@@ -1,3 +1,16 @@
 body {
   background-color: rgb(42, 46, 104);
 }
+.header{
+  display:flex;
+  width:100%;
+  justify-content:space-between;
+  align-content: baseline;
+}
+.header-btn{
+  color: rgb(42, 46, 104) !important;
+  font-weight: bold !important;
+  text-align: center;
+  font-size: 17px !important;
+  border-radius: 6px;
+}

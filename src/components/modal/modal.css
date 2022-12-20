@@ -76,3 +76,7 @@
   background-color: rgb(23 29 100);
 }
 
+.contenedor-botones-center{
+  display: block;
+  text-align: center;
+}

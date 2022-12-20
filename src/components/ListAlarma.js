@@ -1,47 +1,59 @@
+import React,{ Fragment,useState } from "react";
+import {Icon} from 'semantic-ui-react';
 import { useAuth } from "../context/authContext";
-
+import BotonEditar from "./Admin/BotonEditar";
+import ModalEliminarAlarma from "./modal/ModalEliminarAlarma";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ListAlarma(props) {
   const { user } = useAuth();
   const { alarma } = props;
+  const [borrar, setBorrar] = useState(false);
   return (
-    <div key={alarma.id} className="containerAlarm">
+    <div key={alarma?.data?.id} className="containerAlarm">
       <div className="containerAlarm-title">
         <div className="contaienrAlarm-contenido">
-          <span> ET : </span> {alarma.et.toUpperCase()}
+          <span> ET : </span> {alarma.data.et.toUpperCase()}
         </div>
         <div className="contaienrAlarm-contenido">
           <span>Nivel : </span>
-          {alarma.nivelTension}
+          {alarma?.data?.nivelTension}
         </div>
         {user?.email=== "administrador@gmail.com" && 
-          (<div >
-            <button className="btn-Eliminar">X</button>
-          </div>)
+          (<Fragment>
+          <div className="option-admin" >
+            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>BotonEditar(e)} className="btn-Eliminar"><Icon className="icon" name="edit" /></button>
+            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setBorrar(true)} className="btn-Eliminar"><Icon name="trash alternate" /></button>
+          </div>
+          </Fragment>)
         }
         
       </div>
       <div className="containerAlarm-descripcion">
         <div className="containerAlarm-alarmaScada">
-          {alarma.alarma.toUpperCase()}
+          {alarma?.data?.alarma.toUpperCase()}
         </div>
         <div>
           <div className="containerAlarm-descripcion">
-            {alarma.descripcion}
+            {alarma.data.descripcion}
           </div>
         </div>
-
       </div>
       <br></br>
       <div className="contenedor-footer-alarm">
         <p className="containerAlarm-alarmaScada-historial">
-            {alarma.creado}
+            {alarma.data.creado}
         </p>
         <p className="containerAlarm-alarmaScada-historial">
-          {capitalizarPrimeraLetra(fecha(alarma.fecha))}
+          {capitalizarPrimeraLetra(fecha(alarma.data.fecha))}
         </p>
-        
       </div>
+      <ModalEliminarAlarma 
+        onClose={() => setBorrar(false)}
+        onOpen={() => setBorrar(true)}
+        open={borrar}
+        id={alarma?.idDoc}
+      />
     </div>
   );
 }

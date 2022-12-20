@@ -66,9 +66,10 @@
 }
 .containerAlarm-descripcion {
   font-size: 18px;
-  font-weight:500;
+  font-weight: 500;
   letter-spacing: 1.2px;
   margin-block-start: 0px;
+  padding-left: 8px;
 }
 .containerAlarm-alarmaScada {
   font-family: sans-serif;
@@ -119,4 +120,17 @@
   text-align: right;
   color: rgb(22, 4, 77);
   margin-bottom: 0px;
+}
+.btn-Eliminar{
+  background-color: rgb(26 28 59);
+  color:rgba(255,255,255);
+  border-radius: 50px;
+  margin-left: 5px;
+  letter-spacing:1.4px;
+  text-align:center;
+  padding:8px;
+}
+.icon{
+  display: block !important;
+  margin: 0 auto !important;
 }
