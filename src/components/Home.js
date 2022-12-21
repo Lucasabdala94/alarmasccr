@@ -1,4 +1,5 @@
 import BuscadorAlarms from "./BuscadorAlarms";
+import { Icon } from "semantic-ui-react";
 import ModalAgregarAlarm from "./AgregarAlarma";
 import { useAuth } from "../context/authContext";
 import { useState } from "react";
@@ -23,7 +24,11 @@ export default function Home() {
   return (
     <div className="App">
       <div className="header">
+        <div className="container-user">
+        <Icon name="user" />
         <h3>{user?.displayName || user?.email}</h3>
+        </div>
+        
         {/* Boton para cerrar sesion */}
         <button onClick={handleLogout} className="header-btn">salir</button>
       </div>

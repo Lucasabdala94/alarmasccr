@@ -37,6 +37,18 @@
     cursor: pointer;
     border-radius: 12px;
     border: 1px solid rgb(40, 41, 107) ;
+    letter-spacing: 1.2px;
+}
+.btn-primary:hover{
+    
+        -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        outline: 2px solid rgb(250, 250, 251); 
+        color: #fff!important;
+        background-color:rgb(42, 46, 104)!important ;
+        transition: background 0.2s ease-out;
+        
 }
 .contenedor-btn-secundary{
     display: block;
@@ -48,11 +60,22 @@
     color: rgb(40, 41, 107);
     font-weight: bold;
     font-size: 14px;
-    padding: 3px;
+    padding: 5px;
     margin-bottom: 4px;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 0.5px solid rgb(40, 41, 107) ;
+    letter-spacing: 1.2px;
+}
+.btn-secundary:hover{
+
+        -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        outline: 2px solid rgb(250, 250, 251); 
+        color: #fff!important;
+        background-color:rgb(42, 46, 104)!important ;
+        transition: background 0.2s ease-out;
 }
 
 .conternedorFormAcces>div>p{
