@@ -40,9 +40,11 @@
 .containerAlarm-title {
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
+  flex-wrap: wrap;
   color: rgba(0, 0, 0, 0.849);
   border-bottom: 3px solid rgba(0, 0, 0, 0.774);
-  padding-bottom: 3px;
+  padding-bottom: 5px;
 }
 .contaienrAlarm-contenido {
   font-size: 18px;
@@ -122,15 +124,23 @@
   margin-bottom: 0px;
 }
 .btn-Eliminar{
-  background-color: rgb(26 28 59);
+  background-color: rgb(42, 46, 104);;
   color:rgba(255,255,255);
   border-radius: 50px;
   margin-left: 5px;
   letter-spacing:1.4px;
   text-align:center;
   padding:8px;
+  border: none;
+}
+.btn-Eliminar:hover{
+    box-sizing:border-box;
+    background-color: rgb(226, 227, 237);
+    color: rgb(5, 13, 85);
+    outline: 1px solid rgb(5, 13, 85); 
 }
 .icon{
   display: block !important;
   margin: 0 auto !important;
+  
 }

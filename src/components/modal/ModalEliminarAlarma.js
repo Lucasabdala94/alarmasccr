@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react';
+import { Button, Header, Modal } from 'semantic-ui-react';
 import BotonEliminar from '../Admin/BotonEliminar';
 
 
@@ -23,7 +23,7 @@ export default function ModalEliminarAlarma(props) {
     >
       <Header>
         <div className="title-modal">
-          <h1>Eliminar Alarma</h1>
+          <h1>Eliminar Permanentemente</h1>
         </div>
       </Header>
       <Modal.Actions>
@@ -35,7 +35,7 @@ export default function ModalEliminarAlarma(props) {
           eliminar(id);
           onClose(true);
         }}>
-          <Icon name="ban" /> Eliminar Permanentemente
+         Eliminar
         </Button>
         </div>
         

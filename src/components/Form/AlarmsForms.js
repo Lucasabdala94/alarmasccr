@@ -129,7 +129,6 @@ export default function AlarmsForms() {
         <Form.Field
           control={Input}
           label="Nombre Abreviado de ET "
-          placeholder="Ej SCO"
           onChange={handleInputChange}
           name="et"
           value={values.et}

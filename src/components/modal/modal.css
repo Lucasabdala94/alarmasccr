@@ -40,21 +40,25 @@
   text-align: center;
 }
 .ui.form select > option {
+  padding: 10px;
   color: rgb(42, 46, 104) !important;
   font-weight: bold;
-  padding: 7px;
 }
 .ui.form select > option:focus {
   background-color: rgb(44, 47, 94) !important;
+  border: none !important;
+  font-weight: bold;
 }
 .ui.negative.button {
   background-color: rgb(26 28 59) !important;
   border-radius: 50%;
   font-size: 10px;
 }
-.ui.negative.button:hover {
-  background-color: rgb(36, 38, 78) !important;
-  font-size: 11px;
+.ui.negative.button:hover{
+  background-color: rgb(226, 227, 237) !important;
+  color: rgb(5, 13, 85);
+  outline: 1px solid rgb(5, 13, 85); 
+  transition: background 0.2s ease-in-out;
 }
 .ui.error.message {
   background-color: rgba(255,255,255);
@@ -73,10 +77,37 @@
   margin: 0 auto;
 }
 .botonAdd:hover{
-  background-color: rgb(23 29 100);
+  background-color: rgb(226, 227, 237);
+  color: rgb(5, 13, 85);
+  outline: 1px solid rgb(5, 13, 85); 
+  font-weight: bold;
+  transition: background 0.2s ease-out;
 }
 
 .contenedor-botones-center{
-  display: block;
+  display: flex;
+  justify-content: center;
   text-align: center;
+  margin-bottom: 10px;
+}
+.ui.inverted.blue.button{
+  background-color: transparent;
+  box-shadow: 0 0 0 2px rgb(42, 46, 104) inset!important;
+  color: rgb(42, 46, 104);
+  letter-spacing: 1.5px;
+}
+.ui.inverted.blue.button:hover{
+  background-color: rgb(42, 46, 104);
+  transition: background 0.7s ease-out;
+  
+}
+.ui.inverted.red.button{
+  color: rgb(187, 6, 6);
+  box-shadow:  0 0 0 2px rgb(187, 6, 6) inset!important;
+  letter-spacing: 1.5px;
+}
+.ui.inverted.red.button:hover{
+  background-color: rgb(187, 6, 6);
+  transition: background 0.2s ease-out;
+  
 }
