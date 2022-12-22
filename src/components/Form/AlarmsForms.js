@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import ModalError from './../modal/ModalError';
 import Modalsucces from './../modal/Modalsucces';
 import Modalincompleto from './../modal/Modalincompleto';
-
 import { Form, Input, Message, TextArea } from 'semantic-ui-react';
 import { useAuth } from '../../context/authContext';
 

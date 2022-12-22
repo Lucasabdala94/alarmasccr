@@ -1,14 +1,15 @@
 import React,{ Fragment,useState } from "react";
 import {Icon} from 'semantic-ui-react';
 import { useAuth } from "../context/authContext";
-import BotonEditar from "./Admin/BotonEditar";
 import ModalEliminarAlarma from "./modal/ModalEliminarAlarma";
+import ModalEditarAlarma from "./modal/ModalEditarAlarma";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ListAlarma(props) {
   const { user } = useAuth();
   const { alarma,setReload,reload } = props;
   const [borrar, setBorrar] = useState(false);
+  const [editar, setEditar] = useState(false);
   return (
     <div key={alarma?.data?.id} className="containerAlarm">
       <div className="containerAlarm-title">
@@ -22,7 +23,7 @@ export default function ListAlarma(props) {
         {user?.email=== "administrador@gmail.com" && 
           (<Fragment>
           <div className="option-admin" >
-            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>BotonEditar(e)} className="btn-Eliminar"><Icon className="icon" name="edit" /></button>
+            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditar(true)} className="btn-Eliminar"><Icon className="icon" name="edit" /></button>
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setBorrar(true)} className="btn-Eliminar"><Icon name="trash alternate" /></button>
           </div>
           </Fragment>)
@@ -55,6 +56,15 @@ export default function ListAlarma(props) {
         id={alarma?.idDoc}
         setReload={setReload}
         reload={reload}
+      />
+      <ModalEditarAlarma
+      onClose={() => setEditar(false)}
+      onOpen={() => setEditar(true)}
+      open={editar}
+      id={alarma?.idDoc}
+      setReload={setReload}
+      reload={reload}
+      data={alarma?.data}
       />
     </div>
   );
