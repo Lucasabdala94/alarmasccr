@@ -12,13 +12,13 @@ export default function ModalError(props) {
       size="small"
       blurring="true"
     >
-      <Header>
+      <Header className="header-succes">
+        <h4 className='title-succes'>Alarma registrada correctamente</h4>
         <Icon name="check square outline" color="green" />
-        Alarma registrada correctamente
       </Header>
-      <Modal.Actions>
-        <Button basic color="green" onClick={onClose}>
-          <Icon name="check circle outline" /> Volver
+      <Modal.Actions className='content-succes'>
+        <Button className='button-succes' basic color="green" onClick={onClose}>
+          <Icon className='content-button-succes' name="check circle outline" /> Volver
         </Button>
       </Modal.Actions>
     </Modal>

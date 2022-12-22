@@ -111,3 +111,16 @@
   transition: background 0.2s ease-out;
   
 }
+.header-succes{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+}
+.header-succes>i{
+  width: 50px!important;
+
+}
+.content-succes{
+  display:block;
+  margin: 0 auto;
+}

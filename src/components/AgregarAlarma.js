@@ -1,17 +1,17 @@
 import React,{useReducer} from 'react';
-import { Button, Modal } from 'semantic-ui-react';
-import AlarmsForms from './Form/AlarmsForms';
+import { Button } from 'semantic-ui-react';
+import ModalAgregarAlarma from './modal/ModalAgregarAlarma';
 
 export default function AgregarAlarma(props) {
 
   /* Props para recargar el listado de alarmas una vez que se registro una nueva. */
-  const {setRelaod,reload}=props;
+  const {setReload,reload}=props;
 
   const [state, dispatch] = useReducer(AgregarAlarma, {
     open: false,
     dimmer: undefined,
   });
-  const { open, dimmer } = state;
+  
   
   /* funcion para manejar apertura y cierre del modal agregar alarma */
   function AgregarAlarma( time,action) {
@@ -35,35 +35,7 @@ export default function AgregarAlarma(props) {
         Agregar
       </Button>
       {/* MODAL PARA AGREGAR ALARMA */}
-      <Modal
-        dimmer={dimmer}
-        open={open}
-        onClose={() => {
-          dispatch({ type: 'CLOSE_MODAL' })
-          
-        }}
-      >
-        <Modal.Header>
-          <div className="title-modal">
-            <h1>REGISTRO</h1>
-            <Modal.Actions>
-              <Button
-                className="title-modal-salir"
-                negative
-                onClick={() =>{
-                  dispatch({ type: 'CLOSE_MODAL' });
-                  setRelaod(!reload);
-                }}
-              >
-                X
-              </Button>
-            </Modal.Actions>
-          </div>
-        </Modal.Header>
-        <Modal.Content>
-          <AlarmsForms />
-        </Modal.Content>
-      </Modal>
+      <ModalAgregarAlarma reload={reload} setReload={setReload} dispatch={dispatch} state={state}  />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function ListAlarma(props) {
   const { user } = useAuth();
-  const { alarma } = props;
+  const { alarma,setReload,reload } = props;
   const [borrar, setBorrar] = useState(false);
   return (
     <div key={alarma?.data?.id} className="containerAlarm">
@@ -53,6 +53,8 @@ export default function ListAlarma(props) {
         onOpen={() => setBorrar(true)}
         open={borrar}
         id={alarma?.idDoc}
+        setReload={setReload}
+        reload={reload}
       />
     </div>
   );
