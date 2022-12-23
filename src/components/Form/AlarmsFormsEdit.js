@@ -1,18 +1,18 @@
 import React, { useState  } from "react";
 import { Form, Input, Message, TextArea,Button } from 'semantic-ui-react';
 import ModalError from './../modal/ModalError';
-import Modalsucces from './../modal/Modalsucces';
 import Modalincompleto from './../modal/Modalincompleto';
 import { useAuth } from '../../context/authContext';
 import { doc, setDoc,collection,getDocs } from "firebase/firestore"; 
 import { db } from './../../firebase';
+import ModalSuccesEditar from "../modal/ModalSuccesEditar";
 
 export default function AlarmsFormsEdit(props) {
     const {id,onClose,data,setReload,reload}=props;
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [existente, setExistente] = useState(false);
-    const [registrada, setRegistrada] = useState(false);
+    const [editada, setEditada] = useState(false);
 
     const initialStateValue = {
         alarma: data?.alarma,
@@ -36,7 +36,7 @@ export default function AlarmsFormsEdit(props) {
           [name]: value,
         });
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = (e,onClose) => {
         e.preventDefault();
         const { alarma, et, descripcion, nivelTension } = values;
     
@@ -47,52 +47,54 @@ export default function AlarmsFormsEdit(props) {
         const descripcionSan = descripcion.trim();
     
         if (
-          alarmaSan.length !== 0 &&
-          etSan.length !== 0 &&
-          descripcionSan.length !== 0 &&
-          descripcionSan.length !== 1
+            alarmaSan.length !== 0 &&
+            etSan.length !== 0 &&
+            descripcionSan.length !== 0 &&
+            descripcionSan.length !== 1
         ) {
-          setLoading(true);
-          
-          (async () => {
-            try {
-                let descriptionAll = [];
-                const getAlarm = await getDocs(collection(db, '/alarmas'));
-                getAlarm.forEach((doc) => {
-                    //Compara que al editar no se edite por una alarma ya existente.
-                    if(doc?.id!==id){
-                    descriptionAll.push(doc.data().alarma + doc.data().et);
-                  }                 
-                });
+            setLoading(true);
 
-              let existe  = descriptionAll.includes(alarmaSan + etSan);;
-              
-              if (existe === true) {
-                setLoading(false);
-                setExistente(true);
-              } else {
-                
-                const EditRef = doc(db, '/alarmas', id);
-                // eslint-disable-next-line
-                const EditDoc = await setDoc(EditRef, {
-                  alarma: alarmaSan,
-                  descripcion: descripcionSan,
-                  et: etSan,
-                  nivelTension: nivelTension,
-                  fecha:new Date(),
-                  creado: user?.displayName || user?.email,
-                }); 
-                setRegistrada(true);
-                setLoading(false);
-                setReload(!reload);
-              }
-            } catch (e) {
-              setLoading(false);
-            }
-          })();
+            async function ComprobarExisteEnviar (){
+                try {
+                    let descriptionAll = [];
+                    const getAlarm = await getDocs(collection(db, '/alarmas'));
+                    getAlarm.forEach((doc) => {
+                        //Compara que al editar no se edite por una alarma ya existente.
+                        if (doc?.id !== id) {
+                            descriptionAll.push(doc.data().alarma + doc.data().et);
+                        }
+                    });
+
+                    let repetida = descriptionAll.includes(alarmaSan + etSan);;
+
+                    if (repetida === true) {
+                        setLoading(false);
+                        setExistente(true);
+                    } else {
+                        //Condicion donde pasa todo las barreras de edicion.
+                        const EditRef = doc(db, '/alarmas', id);
+                        // eslint-disable-next-line
+                        const EditDoc = await setDoc(EditRef, {
+                            alarma: alarmaSan,
+                            descripcion: descripcionSan,
+                            et: etSan,
+                            nivelTension: nivelTension,
+                            fecha: new Date(),
+                            creado: user?.displayName || user?.email,
+                        });
+                        setEditada(true);
+                        setLoading(false);
+                        setReload(!reload);
+                        
+                    }
+                } catch (e) {
+                    setLoading(false);
+                }
+            };
+            ComprobarExisteEnviar();
         } else {
-          setError(true);
-          setLoading(false);
+            setError(true);
+            setLoading(false);
         }
     };
     return (
@@ -181,10 +183,13 @@ export default function AlarmsFormsEdit(props) {
                 onOpen={() => setExistente(true)}
                 open={existente}
             />
-            <Modalsucces
-                onClose={() => setRegistrada(false)}
-                onOpen={() => setRegistrada(true)}
-                open={registrada}
+            <ModalSuccesEditar
+                onClose={() => {
+                    setEditada(false);
+                    onClose()
+                }}
+                onOpen={() => setEditada(true)}
+                open={editada}
             />
         </Form>
     );
