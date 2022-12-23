@@ -86,7 +86,6 @@ export default function AlarmsForms() {
     } else {
       setError(true);
       setLoading(false);
-      console.log(user);
     }
   };
 
@@ -102,7 +101,7 @@ export default function AlarmsForms() {
       <Message
         error
         list={[
-          'Ingresar exactamente como se lee el Nombre Del Punto de la alarma en Scada respetando espacios',
+          'Ingresar exactamente como se lee el Nombre Del Punto de la alarma en Scada respetando espacios.',
         ]}
       />
       
@@ -115,12 +114,12 @@ export default function AlarmsForms() {
           value={values.nivelTension}
         >
           <option value="-">---</option>
-          <option value="500 Kv">500 Kv</option>
-          <option value="345 Kv">345 Kv</option>
-          <option value="132 Kv">132 Kv</option>
-          <option value="66 Kv">66 Kv</option>
-          <option value="33 Kv">33 Kv</option>
-          <option value="13.2 Kv">13.2 Kv</option>
+          <option value="500 KV">500 Kv</option>
+          <option value="345 KV">345 Kv</option>
+          <option value="132 KV">132 Kv</option>
+          <option value="66 KV">66 Kv</option>
+          <option value="33 KV">33 Kv</option>
+          <option value="13.2 KV">13.2 Kv</option>
           <option value="380v AC">380 v AC</option>
           <option value="110 DC">110 DC</option>
           <option value="48 DC">48 V DC</option>
@@ -137,7 +136,7 @@ export default function AlarmsForms() {
       <Message
         warning
         list={[
-          'Alarmas donde intervienen dos ET, escribir ET emisora de la misma',
+          'Alarmas donde intervienen dos ET, escribir ET emisora de la misma.',
         ]}
       />
       <Form.Field
@@ -150,8 +149,8 @@ export default function AlarmsForms() {
       <Message
         warning
         list={[
-          'Ingresar fecha y hora de los eventos ',
-          'Incluir informacion del personal informado',
+          'Ingresar fecha y hora de los eventos.',
+          'Incluir informacion del personal informado.',
         ]}
       />
       <Form.Field>

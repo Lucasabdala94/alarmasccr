@@ -12,9 +12,9 @@ export default function Modalincompleto(props) {
       size="small"
       blurring="true"
     >
-      <Header>
-        <Icon name="tasks" />
-        Error al Cargar la Alarma
+      <Header className='Modal-header'>
+        <p className='Modal-title'>Error al Cargar la Alarma</p>
+        <div className='Content-Icon'><Icon name="tasks" /></div>
       </Header>
       <Modal.Content>
         <h3>Todos los campos son obligatorios...</h3>
@@ -28,12 +28,12 @@ export default function Modalincompleto(props) {
           Estacion Transformadora : <span>{values.et}</span>
         </p>
         <p>
-          Descripcion de lo Sucedido : <span>{values.descripcion}</span>
+          Descripcion del evento: <span>{values.descripcion}</span>
         </p>
       </Modal.Content>
-      <Modal.Actions>
-        <Button basic color="red" onClick={onClose}>
-          <Icon name="remove" /> cerrar
+      <Modal.Actions >
+        <Button basic color="red" className='Modal-header' onClick={onClose}>
+          <Icon className='Content-Icon' name="remove" /> cerrar
         </Button>
       </Modal.Actions>
     </Modal>

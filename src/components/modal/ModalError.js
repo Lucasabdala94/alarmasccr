@@ -13,16 +13,17 @@ export default function ModalError(props) {
       size="small"
       blurring="true"
     >
-      <Header>
-        <Icon name="tasks" />
-        Error al Cargar la Alarma
+      <Header className='Modal-header' >
+        <p className='Modal-title'>Error al Cargar la Alarma</p>
+        <div className='Content-Icon'><Icon name="tasks" /></div>
       </Header>
       <Modal.Content>
         <h3>Alarma existente en registro</h3>
+        <p>Se encuentra registrada alarma con la misma estacion transformadora</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button basic color="red" onClick={onClose}>
-          <Icon name="remove" /> cerrar
+        <Button inverted color="red" className='Modal-header' onClick={onClose}>
+          <Icon className='Content-Icon' name="remove" /> cerrar
         </Button>
       </Modal.Actions>
     </Modal>
