@@ -13,7 +13,7 @@ export default function BuscadorAlarms(props) {
   const [busqueda, setBusqueda] = useState(null);
   const [filtro, setFiltro] = useState(null);
   
-  const {reload}= props;
+  const {reload,setReload}= props;
 
 
   let alarmsAll = [];
@@ -63,10 +63,10 @@ export default function BuscadorAlarms(props) {
       <div className="containerAlarmAll">
         {busqueda ? 
           filtro.map((alarma) => {
-            return (<ListAlarma key={alarma?.data?.id} alarma={alarma} />)
+            return (<ListAlarma key={alarma?.data?.id} alarma={alarma}/>)
             
           }) : alarm.map((alarma) => {
-            return <ListAlarma key={alarma?.data?.id} alarma={alarma}/>
+            return <ListAlarma key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload}/>
           }) }
       </div>
     </div>
@@ -74,8 +74,8 @@ export default function BuscadorAlarms(props) {
 }
 
 async function filter(alarmas, busqueda) {
-  let resultado = await alarmas.filter((alarma) => {
-    if (alarma.et.includes(busqueda)) {
+  let resultado = await alarmas?.filter((alarma) => {
+    if (alarma?.data?.et.includes(busqueda)) {
       return alarma;
     }
   });

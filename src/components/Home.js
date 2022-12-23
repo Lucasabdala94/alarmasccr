@@ -1,13 +1,13 @@
 import BuscadorAlarms from "./BuscadorAlarms";
 import { Icon } from "semantic-ui-react";
-import ModalAgregarAlarm from "./AgregarAlarma";
 import { useAuth } from "../context/authContext";
 import { useState } from "react";
+import AgregarAlarma from "./AgregarAlarma";
 
 export default function Home() {
 
   // constantes para recargar las alarmas.
-  const [reload, setRelaod] = useState(false);
+  const [reload, setReload] = useState(false);
 
   // Estados del contexto general.
   const { user, logout } = useAuth();
@@ -35,10 +35,10 @@ export default function Home() {
 
       <h1>Registro de Alarmas</h1>
       <div className="contenedor-centrador">
-        <ModalAgregarAlarm setRelaod={setRelaod} reload={reload} />
+        <AgregarAlarma setReload={setReload} reload={reload} />
       </div>
 
-      <BuscadorAlarms reload={reload} />
+      <BuscadorAlarms reload={reload} setReload={setReload} />
     </div>
   );
 }

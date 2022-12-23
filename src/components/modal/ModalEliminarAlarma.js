@@ -5,11 +5,12 @@ import BotonEliminar from '../Admin/BotonEliminar';
 
 export default function ModalEliminarAlarma(props) {
 
-  const { onClose, onOpen, open, id } = props;
+  const { onClose, onOpen, open, id,setReload,reload } = props;
 
   //Funcion para eliminar una alarma con el id de firebase.
   async function eliminar(id) {
     await BotonEliminar(id);
+    setReload(!reload);
     onClose();
   }
 
