@@ -4,9 +4,11 @@ import ModalError from './../modal/ModalError';
 import Modalsucces from './../modal/Modalsucces';
 import Modalincompleto from './../modal/Modalincompleto';
 import { useAuth } from '../../context/authContext';
+import { doc, setDoc,collection,getDocs } from "firebase/firestore"; 
+import { db } from './../../firebase';
 
 export default function AlarmsFormsEdit(props) {
-    const {id,onClose,data}=props;
+    const {id,onClose,data,setReload,reload}=props;
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [existente, setExistente] = useState(false);
@@ -24,7 +26,7 @@ export default function AlarmsFormsEdit(props) {
     const [values, setValues] = useState(initialStateValue);
     // extraemos del contexto general el usuario.
     const {user}=useAuth();
-    console.log(data);
+    
 
     
     const handleInputChange = (e) => {
@@ -45,38 +47,44 @@ export default function AlarmsFormsEdit(props) {
         const descripcionSan = descripcion.trim();
     
         if (
-          alarma.length !== 0 &&
-          et.length !== 0 &&
-          descripcion.length !== 0 &&
-          nivelTension.length !== 1
+          alarmaSan.length !== 0 &&
+          etSan.length !== 0 &&
+          descripcionSan.length !== 0 &&
+          descripcionSan.length !== 1
         ) {
           setLoading(true);
           
           (async () => {
             try {
-              let descriptionAll = [];
-              /* const getAlarm = await getDocs(collection(db, '/alarmas'));
-              getAlarm.forEach((doc) => {
-                descriptionAll.push(doc.data().alarma + doc.data().et);
-              }); */
-    
-              let existe = descriptionAll.includes(alarmaSan + etSan);
+                let descriptionAll = [];
+                const getAlarm = await getDocs(collection(db, '/alarmas'));
+                getAlarm.forEach((doc) => {
+                    //Compara que al editar no se edite por una alarma ya existente.
+                    if(doc?.id!==id){
+                    descriptionAll.push(doc.data().alarma + doc.data().et);
+                  }                 
+                });
+
+              let existe  = descriptionAll.includes(alarmaSan + etSan);;
               
               if (existe === true) {
                 setLoading(false);
                 setExistente(true);
               } else {
+                
+                const EditRef = doc(db, '/alarmas', id);
                 // eslint-disable-next-line
-                /* const docRef = await addDoc(collection(db, '/alarmas'), {
+                const EditDoc = await setDoc(EditRef, {
                   alarma: alarmaSan,
                   descripcion: descripcionSan,
                   et: etSan,
                   nivelTension: nivelTension,
                   fecha:new Date(),
                   creado: user?.displayName || user?.email,
-                }); */
+                }); 
                 setRegistrada(true);
                 setLoading(false);
+                setReload(!reload);
               }
             } catch (e) {
               setLoading(false);

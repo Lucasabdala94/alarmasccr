@@ -69,7 +69,7 @@ function Login() {
                 <label htmlFor="email">Email</label>
                 <input type="text" name="email" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" onChange={handleChange} />
+                <input type="password" name="password"  id="password" onChange={handleChange} />
                 
             </form>   
             <div className="contenedor-btn">

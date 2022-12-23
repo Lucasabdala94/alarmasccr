@@ -137,7 +137,7 @@
     box-sizing:border-box;
     background-color: rgb(226, 227, 237);
     color: rgb(5, 13, 85);
-    outline: 1px solid rgb(5, 13, 85); 
+    outline: 1px solid rgb(5, 13, 85);
 }
 .icon{
   display: block !important;

@@ -23,7 +23,7 @@ export default function ModalEditarAlarma(props) {
         </div>
       </Header>
       <Modal.Content>
-        <AlarmsFormsEdit data={data} id={id} onClose={onClose} />
+        <AlarmsFormsEdit data={data} id={id} onClose={onClose} setReload={setReload} reload={reload}/>
       </Modal.Content>
     </Modal>
 
