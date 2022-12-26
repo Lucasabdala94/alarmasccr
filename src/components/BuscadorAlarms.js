@@ -15,12 +15,13 @@ export default function BuscadorAlarms(props) {
   
   const {reload,setReload}= props;
 
-
+  //variables que Almacena los objetos con idFirebase y datos.
   let alarmsAll = [];
 
   useEffect(() => {
     (async () => {
       try {
+        //Extraigo todas las alarmas.
         const getAlarm = await getDocs(
           query(collection(db, '/alarmas'), orderBy('fecha','desc'))
         );
@@ -30,7 +31,6 @@ export default function BuscadorAlarms(props) {
           });
           
         });
-        
         setAlarm(alarmsAll);
         
       } catch (e) {
@@ -38,6 +38,8 @@ export default function BuscadorAlarms(props) {
       }
     })();
   }, [reload]);
+
+  //registra lo que escribe en el buscador y lo asigna a busqueda.
   const handleInputChange = (e) => {
     let buscar = e.target.value;
     setBusqueda(buscar.toLocaleLowerCase().trim());
@@ -47,7 +49,7 @@ export default function BuscadorAlarms(props) {
     (async () => {
       setFiltro(await filter(alarm, busqueda));
     })();
-  }, [busqueda]);
+  }, [busqueda,reload,alarm]);
 
   return (
     <div className="buscador">
@@ -63,10 +65,10 @@ export default function BuscadorAlarms(props) {
       <div className="containerAlarmAll">
         {busqueda ? 
           filtro.map((alarma) => {
-            return (<ListAlarma key={alarma?.data?.id} alarma={alarma}/>)
+            return (<ListAlarma key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
             
           }) : alarm.map((alarma) => {
-            return <ListAlarma key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload}/>
+            return <ListAlarma key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
           }) }
       </div>
     </div>

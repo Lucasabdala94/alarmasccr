@@ -36,7 +36,7 @@ export default function AlarmsFormsEdit(props) {
           [name]: value,
         });
     };
-    const handleSubmit = (e,onClose) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const { alarma, et, descripcion, nivelTension } = values;
     
@@ -85,6 +85,7 @@ export default function AlarmsFormsEdit(props) {
                         setEditada(true);
                         setLoading(false);
                         setReload(!reload);
+                        
                         
                     }
                 } catch (e) {

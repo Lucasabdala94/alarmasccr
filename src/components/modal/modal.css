@@ -82,6 +82,7 @@
   outline: 1px solid rgb(5, 13, 85); 
   font-weight: bold;
   transition: background 0.2s ease-out;
+  cursor: pointer;
 }
 
 .contenedor-botones-center{
