@@ -32,7 +32,7 @@ export default function Modalincompleto(props) {
         </p>
       </Modal.Content>
       <Modal.Actions >
-        <Button basic color="red" className='Modal-header' onClick={onClose}>
+        <Button inverted color="red" className='Modal-header' onClick={onClose}>
           <Icon className='Content-Icon' name="remove" /> cerrar
         </Button>
       </Modal.Actions>

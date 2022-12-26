@@ -187,7 +187,7 @@ export default function AlarmsFormsEdit(props) {
             <ModalSuccesEditar
                 onClose={() => {
                     setEditada(false);
-                    onClose()
+                    onClose();
                 }}
                 onOpen={() => setEditada(true)}
                 open={editada}

@@ -9,8 +9,10 @@ export default function ModalError(props) {
       onClose={onClose}
       onOpen={onOpen}
       open={open}
-      size="small"
+      size="mini"
       blurring="true"
+      centered
+
     >
 
       <Header className='Modal-header'>

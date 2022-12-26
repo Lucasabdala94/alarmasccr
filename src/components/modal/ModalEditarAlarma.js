@@ -14,8 +14,9 @@ export default function ModalEditarAlarma(props) {
       onClose={onClose}
       onOpen={onOpen}
       open={open}
-      size="small"
+      size="mini"
       blurring="true"
+      centered
     >
       <Header>
         <div className="title-modal">
