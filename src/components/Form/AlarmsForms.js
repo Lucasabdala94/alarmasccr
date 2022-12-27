@@ -79,6 +79,7 @@ export default function AlarmsForms() {
             setValues(initialStateValue);
           }
         } catch (e) {
+          console.log(e);
           setLoading(false);
         }
       })();

@@ -1,6 +1,6 @@
 import React,{useReducer} from 'react';
 import { Button } from 'semantic-ui-react';
-import ModalAgregarAlarma from './modal/ModalAgregarAlarma';
+import ModalAgregarAlarma from "../../modal/ModalAgregarAlarma";
 
 export default function AgregarAlarma(props) {
 

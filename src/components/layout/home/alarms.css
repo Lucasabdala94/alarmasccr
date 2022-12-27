@@ -132,6 +132,7 @@
   text-align:center;
   padding:8px;
   border: none;
+  margin-top: 8px;
 }
 .btn-Eliminar:hover{
     box-sizing:border-box;

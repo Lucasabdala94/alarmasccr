@@ -1,14 +1,18 @@
 import React,{ Fragment,useState } from "react";
 import {Icon} from 'semantic-ui-react';
-import { useAuth } from "../context/authContext";
-import ModalEliminarAlarma from "./modal/ModalEliminarAlarma";
-import ModalEditarAlarma from "./modal/ModalEditarAlarma";
 import { v4 as uuidv4 } from 'uuid';
+import { useAuth } from "../../../context/authContext";
+import ModalEliminarAlarma from "../../modal/ModalEliminarAlarma";
+import ModalEditarAlarma from "../../modal/ModalEditarAlarma";
+import { capitalizarPrimeraLetra } from "../../../helper/textTransform";
+import { transformFecha } from "../../../helper/transforFecha";
 
 export default function ListAlarma(props) {
   const { user } = useAuth();
   const { alarma,setReload,reload } = props;
+  //Abre modal de eliminar alarma modo admin.
   const [borrar, setBorrar] = useState(false);
+  //Abre modal de editar alarma modo admin.
   const [editar, setEditar] = useState(false);
   return (
     <div key={alarma?.data?.id} className="containerAlarm">
@@ -43,10 +47,10 @@ export default function ListAlarma(props) {
       <br></br>
       <div className="contenedor-footer-alarm">
         <p className="containerAlarm-alarmaScada-historial">
-            {alarma.data.creado}
+            {alarma?.data?.creado}
         </p>
         <p className="containerAlarm-alarmaScada-historial">
-          {capitalizarPrimeraLetra(fecha(alarma.data.fecha))}
+          {capitalizarPrimeraLetra(transformFecha(alarma.data.fecha))}
         </p>
       </div>
       <ModalEliminarAlarma 
@@ -68,23 +72,4 @@ export default function ListAlarma(props) {
       />
     </div>
   );
-}
-
-/*capitalizar primera letra */
-function capitalizarPrimeraLetra(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-/*Calculo de fecha*/
-function fecha(registro) {
-  const calculoFecha = new Date(registro.toDate());
-
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  const fechaEntrega = calculoFecha.toLocaleDateString('es-ES', options);
-  return fechaEntrega.toString();
 }

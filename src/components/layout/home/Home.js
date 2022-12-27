@@ -1,7 +1,7 @@
-import BuscadorAlarms from "./BuscadorAlarms";
-import { Icon } from "semantic-ui-react";
-import { useAuth } from "../context/authContext";
 import { useState } from "react";
+import { Icon } from "semantic-ui-react";
+import { useAuth } from "../../../context/authContext";
+import BuscadorAlarms from "./BuscadorAlarms"
 import AgregarAlarma from "./AgregarAlarma";
 
 export default function Home() {
@@ -25,10 +25,9 @@ export default function Home() {
     <div className="App">
       <div className="header">
         <div className="container-user">
-        <Icon name="user" />
-        <h3>{user?.displayName || user?.email}</h3>
+          <Icon name="user" />
+          <h3>{user?.displayName || user?.email}</h3>
         </div>
-        
         {/* Boton para cerrar sesion */}
         <button onClick={handleLogout} className="header-btn">salir</button>
       </div>

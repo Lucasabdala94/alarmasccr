@@ -2,14 +2,13 @@ import React from 'react';
 import './App.css';
 import {Routes,Route} from "react-router-dom";
 import { AuthProvider } from './context/authContext';
-import Home from './components/Home';
-import Login from './components/Login/Login';
-import Register from './components/Registro/Register';
+import Home from './components/layout/home/Home';
+import Login from './components/layout/Login/Login';
+import Register from './components/layout/Registro/Register';
 import ProtectedRoutes from './components/ProtectedRoutes';
 
 
-function App() {
- 
+export default function App() {
   return (
     <AuthProvider>
     <Routes>
@@ -21,4 +20,3 @@ function App() {
   );
 }
 
-export default App;

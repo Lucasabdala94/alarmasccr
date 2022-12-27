@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'semantic-ui-react';
-import { db } from '../firebase';
-import { getDocs, collection, query, orderBy} from 'firebase/firestore';
-
-import ListAlarma from './ListAlarma';
 import './alarms.css';
+import { db } from '../../../firebase';
+import { getDocs, collection, query, orderBy} from 'firebase/firestore';
+import ListAlarma from './ListAlarma';
+import {filtroBusqueda} from "../../../helper/filtroBusqueda";
 
 export default function BuscadorAlarms(props) {
+  //estado que contiene todas las alarmas (datos  e id);
   const [alarm, setAlarm] = useState([]);
   
   //Almacena la busqueda.
   const [busqueda, setBusqueda] = useState(null);
+  //Almacena alarma que coincide con busqueda.
   const [filtro, setFiltro] = useState(null);
   
   const {reload,setReload}= props;
 
   //variables que Almacena los objetos con idFirebase y datos.
   let alarmsAll = [];
-
+  //Trae de firebase todas las alarmas y la asigna al estado alarm
   useEffect(() => {
     (async () => {
       try {
@@ -37,6 +39,7 @@ export default function BuscadorAlarms(props) {
         console.log(e);
       }
     })();
+    // eslint-disable-next-line
   }, [reload]);
 
   //registra lo que escribe en el buscador y lo asigna a busqueda.
@@ -44,10 +47,10 @@ export default function BuscadorAlarms(props) {
     let buscar = e.target.value;
     setBusqueda(buscar.toLocaleLowerCase().trim());
   };
-
+  // Asigna al estado filtro las alarmas que coinciden con la busqueda.
   useEffect(() => {
     (async () => {
-      setFiltro(await filter(alarm, busqueda));
+      setFiltro(await filtroBusqueda(alarm, busqueda));
     })();
   }, [busqueda,reload,alarm]);
 
@@ -74,15 +77,5 @@ export default function BuscadorAlarms(props) {
     </div>
   );
 }
-
-async function filter(alarmas, busqueda) {
-  let resultado = await alarmas?.filter((alarma) => {
-    if (alarma?.data?.et.includes(busqueda)) {
-      return alarma;
-    }
-  });
-  return resultado;
-}
-
 
 

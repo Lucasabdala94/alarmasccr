@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useAuth} from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -22,6 +22,10 @@ function Register() {
             navigate("/");
         } catch (error) {
             setError(error.message);
+            if(error.message==="Firebase: Error (auth/unauthorized-domain)."){
+                setError("No tiene acceso desde este dominio.")
+            }
+            
         }
         
     }
@@ -42,8 +46,10 @@ function Register() {
             if(error.code==="auth/email-already-in-use"){
                 setError("El correo electronico ingresado ya se encuentra registrado")
             }
-           
-           console.log(error.code)
+            if(error.code==="auth/network-request-failed"){
+                setError("No tienes acceso a internet")
+            }
+            
         }
         
     }
@@ -64,7 +70,7 @@ function Register() {
             </div>
             {error && <p className="errorForm">{error}</p>}
             <div>
-                <p>Ya tengo una cuenta registrada</p>
+                <p>Ya tienes una cuenta registrada?</p>
                 <div className="contenedor-btn-secundary">
                     <button className="btn-secundary" onClick={()=>{navigate('/login')}}>Ir al Login</button>
                 </div>

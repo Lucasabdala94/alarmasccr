@@ -3,9 +3,18 @@ body {
 }
 .header{
   display:flex;
-  width:100%;
+  flex-direction: column-reverse;
   justify-content:space-between;
-  align-items: baseline;
+  align-items: flex-end;
+}
+@media screen and (min-width: 768px) {
+  .header{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    justify-content:space-between;
+    align-items: baseline;
+  }
 }
 .container-user{
   display: flex;
@@ -27,6 +36,7 @@ body {
   padding: 6px;
   height: 20px;
   line-height: 10px;  
+  width: 90px;
 }
 .header-btn:hover{
   background-color:rgb(42, 46, 104) !important;

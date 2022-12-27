@@ -1,6 +1,6 @@
 import { useState } from "react";
-import {useAuth} from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/authContext";
 import "./loginregister.css";
 
 
@@ -57,8 +57,12 @@ function Login() {
             if(error.code==="auth/user-not-found"){
                 setError("correo o contraseña incorrectos")
             }
-           
-           
+            if(error.code==="auth/network-request-failed"){
+                setError("No tienes acceso a internet")
+            }
+            if(error.message==="Firebase: Error (auth/unauthorized-domain)."){
+                setError("No tiene acceso desde este dominio.")
+            }
         }
         
     }
