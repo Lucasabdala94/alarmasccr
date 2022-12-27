@@ -73,6 +73,9 @@ export default function AlarmsForms() {
               id: uuidv4(),
               fecha:new Date(),
               creado: user?.displayName || user?.email,
+              fechaAdmin:"",
+              descripcionAdmin:"",
+              creadoAdmin:"",
             });
             setRegistrada(true);
             setLoading(false);

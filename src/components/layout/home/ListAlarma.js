@@ -2,8 +2,8 @@ import React,{ Fragment,useState } from "react";
 import {Icon} from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from "../../../context/authContext";
-import ModalEliminarAlarma from "../../modal/ModalEliminarAlarma";
-import ModalEditarAlarma from "../../modal/ModalEditarAlarma";
+import ModalEliminarAlarma from "../../Admin/ModalEliminarAlarma";
+import ModalEditarAlarmaAdmin from "../../Admin/ModalEditarAlarmaAdmin";
 import { capitalizarPrimeraLetra } from "../../../helper/textTransform";
 import { transformFecha } from "../../../helper/transforFecha";
 
@@ -50,9 +50,24 @@ export default function ListAlarma(props) {
             {alarma?.data?.creado}
         </p>
         <p className="containerAlarm-alarmaScada-historial">
-          {capitalizarPrimeraLetra(transformFecha(alarma.data.fecha))}
+          {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fecha))}
         </p>
       </div>
+      {alarma?.data?.descripcionAdmin &&
+        (<Fragment><div>
+          <div className="containerAlarm-descripcion">
+            {alarma?.data?.descripcionAdmin}
+          </div>
+      </div>
+      <div className="contenedor-footer-alarmAdmin">
+        <p className="containerAlarm-alarmaScada-historial">
+            {alarma?.data?.creadoAdmin}
+        </p>
+        <p className="containerAlarm-alarmaScada-historial">
+          {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fechaAdmin))}
+        </p>
+      </div>
+      </Fragment>)}
       <ModalEliminarAlarma 
         onClose={() => setBorrar(false)}
         onOpen={() => setBorrar(true)}
@@ -61,7 +76,7 @@ export default function ListAlarma(props) {
         setReload={setReload}
         reload={reload}
       />
-      <ModalEditarAlarma
+      <ModalEditarAlarmaAdmin
       onClose={() => setEditar(false)}
       onOpen={() => setEditar(true)}
       open={editar}

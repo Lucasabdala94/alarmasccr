@@ -111,10 +111,18 @@
   letter-spacing: 2.3px;
   padding:10px;
 }
+
 @media screen and (min-width: 768px) {
   .contenedor-footer-alarm{
     display:flex;
     justify-content: space-between;
+    padding-bottom: 7px;
+    border-bottom: 2px dotted rgba(0, 0, 0, 0.774);
+  }
+  .contenedor-footer-alarmAdmin{
+    display:flex;
+    justify-content: space-between;
+    padding-bottom: 7px;
   }
 }
 
@@ -122,6 +130,7 @@
   text-align: right;
   color: rgb(22, 4, 77);
   margin-bottom: 0px;
+  padding-left: 8px;
 }
 .btn-Eliminar{
   background-color: rgb(42, 46, 104);;

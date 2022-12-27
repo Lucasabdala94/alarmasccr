@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Header, Modal } from 'semantic-ui-react';
-import BotonEliminar from '../Admin/BotonEliminar';
+import BotonEliminar from './BotonEliminar';
 
 
 export default function ModalEliminarAlarma(props) {
