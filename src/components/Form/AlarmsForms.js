@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { db } from './../../firebase';
-import { v4 as uuidv4 } from 'uuid';
+import { Form, Input, Message, TextArea } from 'semantic-ui-react';
+import { useAuth } from '../../context/authContext';
 import ModalError from './../modal/ModalError';
 import Modalsucces from './../modal/Modalsucces';
 import Modalincompleto from './../modal/Modalincompleto';
-import { Form, Input, Message, TextArea } from 'semantic-ui-react';
-import { useAuth } from '../../context/authContext';
+import {crearArrayAlarmEt} from '../../helper/consultasFB';
+import {agregarAlarma} from '../../helper/consultasFB';
+import {nivelesTension} from '../../helper/nivelesTension';
+
 
 export default function AlarmsForms() {
   const [loading, setLoading] = useState(false);
@@ -35,48 +36,32 @@ export default function AlarmsForms() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { alarma, et, descripcion, nivelTension } = values;
-
     const alarmaSan = alarma.toLocaleLowerCase().trim();
-
     const etSan = et.toLocaleLowerCase().trim();
-
     const descripcionSan = descripcion.trim();
 
     if (
-      alarma.length !== 0 &&
-      et.length !== 0 &&
-      descripcion.length !== 0 &&
+      alarmaSan.length !== 0 &&
+      etSan.length !== 0 &&
+      descripcionSan.length !== 0 &&
       nivelTension.length !== 1
     ) {
       setLoading(true);
       
       (async () => {
         try {
-          let descriptionAll = [];
-          const getAlarm = await getDocs(collection(db, '/alarmas'));
-          getAlarm.forEach((doc) => {
-            descriptionAll.push(doc.data().alarma + doc.data().et);
-          });
+          //funcion que almacena en un array un conjunto de alarma + et.
+          const alarEt= await crearArrayAlarmEt();
 
-          let existe = descriptionAll.includes(alarmaSan + etSan);
+          // si existe= true es porque ya existe una misma alarma en esa et. Se compara el nuevo registro con todos los de las base de datos.
+          let existe = alarEt.includes(alarmaSan + etSan);
           
           if (existe === true) {
             setLoading(false);
             setExistente(true);
           } else {
             // eslint-disable-next-line
-            const docRef = await addDoc(collection(db, '/alarmas'), {
-              alarma: alarmaSan,
-              descripcion: descripcionSan,
-              et: etSan,
-              nivelTension: nivelTension,
-              id: uuidv4(),
-              fecha:new Date(),
-              creado: user?.displayName || user?.email,
-              fechaAdmin:"",
-              descripcionAdmin:"",
-              creadoAdmin:"",
-            });
+            const addAlarm = await agregarAlarma(alarmaSan,descripcionSan,etSan,nivelTension,user);
             setRegistrada(true);
             setLoading(false);
             setValues(initialStateValue);
@@ -116,17 +101,7 @@ export default function AlarmsForms() {
           name="nivelTension"
           value={values.nivelTension}
         >
-          <option value="-">---</option>
-          <option value="500 KV">500 Kv</option>
-          <option value="345 KV">345 Kv</option>
-          <option value="132 KV">132 Kv</option>
-          <option value="66 KV">66 Kv</option>
-          <option value="33 KV">33 Kv</option>
-          <option value="13.2 KV">13.2 Kv</option>
-          <option value="380v AC">380 v AC</option>
-          <option value="110 DC">110 DC</option>
-          <option value="48 DC">48 V DC</option>
-          <option value="Otros">Otra</option>
+          {nivelesTension()}
         </Form.Field>
         <Form.Field
           control={Input}
