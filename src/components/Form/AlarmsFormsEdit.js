@@ -6,6 +6,8 @@ import { useAuth } from '../../context/authContext';
 import { doc, setDoc,collection,getDocs } from "firebase/firestore"; 
 import { db } from './../../firebase';
 import ModalSuccesEditar from "../modal/ModalSuccesEditar";
+import {crearArrayAlarmEt} from '../../helper/consultasFB';
+import {nivelesTension} from '../../helper/nivelesTension';
 
 export default function AlarmsFormsEdit(props) {
     const {id,onClose,data,setReload,reload}=props;
@@ -56,16 +58,11 @@ export default function AlarmsFormsEdit(props) {
 
             async function ComprobarExisteEnviar (){
                 try {
-                    let descriptionAll = [];
-                    const getAlarm = await getDocs(collection(db, '/alarmas'));
-                    getAlarm.forEach((doc) => {
-                        //Compara que al editar no se edite por una alarma ya existente.
-                        if (doc?.id !== id) {
-                            descriptionAll.push(doc.data().alarma + doc.data().et);
-                        }
-                    });
+                    //funcion que almacena en un array un conjunto de alarma + et.
+                    const alarEt= await crearArrayAlarmEt();
 
-                    let repetida = descriptionAll.includes(alarmaSan + etSan);;
+                    // si existe= true es porque ya existe una misma alarma en esa et. Se compara el nuevo registro editado con todos los de la base de datos.
+                    let existe = alarEt.includes(alarmaSan + etSan);
 
                     if (repetida === true) {
                         setLoading(false);
@@ -84,9 +81,7 @@ export default function AlarmsFormsEdit(props) {
                         });
                         setEditada(true);
                         setLoading(false);
-                        setReload(!reload);
-                        
-                        
+                        setReload(!reload);                      
                     }
                 } catch (e) {
                     setLoading(false);
@@ -122,17 +117,7 @@ export default function AlarmsFormsEdit(props) {
                     name="nivelTension"
                     value={values?.nivelTension}
                 >
-                    <option value="-">---</option>
-                    <option value="500 Kv">500 Kv</option>
-                    <option value="345 Kv">345 Kv</option>
-                    <option value="132 Kv">132 Kv</option>
-                    <option value="66 Kv">66 Kv</option>
-                    <option value="33 Kv">33 Kv</option>
-                    <option value="13.2 Kv">13.2 Kv</option>
-                    <option value="380v AC">380 v AC</option>
-                    <option value="110 DC">110 DC</option>
-                    <option value="48 DC">48 V DC</option>
-                    <option value="Otros">Otra</option>
+                    {nivelesTension()}
                 </Form.Field>
                 <Form.Field
                     control={Input}

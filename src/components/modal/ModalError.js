@@ -19,7 +19,7 @@ export default function ModalError(props) {
       </Header>
       <Modal.Content>
         <h3>Alarma existente en registro</h3>
-        <p>Se encuentra registrada alarma con la misma estacion transformadora</p>
+        <p>Se encuentra registrada la misma alarma para esta estacion transformadora.</p>
       </Modal.Content>
       <Modal.Actions>
         <Button inverted color="red" className='Modal-header' onClick={onClose}>
