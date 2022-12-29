@@ -62,7 +62,7 @@ export default function AlarmsFormsEdit(props) {
                     const alarEt= await crearArrayAlarmEt();
 
                     // si existe= true es porque ya existe una misma alarma en esa et. Se compara el nuevo registro editado con todos los de la base de datos.
-                    let existe = alarEt.includes(alarmaSan + etSan);
+                    let repetida = alarEt.includes(alarmaSan + etSan);
 
                     if (repetida === true) {
                         setLoading(false);
