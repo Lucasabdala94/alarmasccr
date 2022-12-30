@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect,useRef,createRef } from 'react';
 import { Input,Icon } from 'semantic-ui-react';
 import './alarms.css';
 import { db } from '../../../firebase';
@@ -57,13 +57,16 @@ export default function BuscadorAlarms(props) {
   }, [busqueda,reload,alarm]);
 
   
-  //Funcion de imprimir
   let impresion = useRef();
-  const handlePrint= useReactToPrint({
-    content: ()=> impresion.current,
-    documentTitle:"emp-data",
-    onAfterPrint: ()=> alert("Impresion exitos")
-  })
+  //Funcion de imprimir
+ 
+    const handlePrint= useReactToPrint({
+      content: ()=> impresion.current,
+      documentTitle:"emp-data",
+      
+    });
+
+  
 
   return (
     <div className="buscador">
@@ -79,15 +82,18 @@ export default function BuscadorAlarms(props) {
       <div className="containerAlarmAll" ref={impresion} >
         {busqueda ? 
           filtro.map((alarma) => {
-            return (<ListAlarma ref={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
+            return (<ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
             
           }) : alarm.map((alarma) => {
-            return <ListAlarma ref={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
+            return <ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
           }) }
       </div>
-      <div className="option-admin" >
-        <button onClick={handlePrint} className="btn-primary"><Icon className="print" name="edit" />Imprimir</button>
-      </div>
+      {alarm.length!==0 &&
+        <div className="impresion" >
+          <button onClick={handlePrint} className="btn-secundary"><Icon className="print" name="edit" /></button>
+        </div>
+      }
+      
 
     </div>
   );
