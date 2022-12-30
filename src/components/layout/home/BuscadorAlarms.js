@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Input } from 'semantic-ui-react';
+import React, { useState, useEffect,useRef } from 'react';
+import { Input,Icon } from 'semantic-ui-react';
 import './alarms.css';
 import { db } from '../../../firebase';
 import { getDocs, collection, query, orderBy} from 'firebase/firestore';
 import ListAlarma from './ListAlarma';
 import {filtroBusqueda} from "../../../helper/filtroBusqueda";
+import { useReactToPrint } from 'react-to-print';
 
 export default function BuscadorAlarms(props) {
   //estado que contiene todas las alarmas (datos  e id);
   const [alarm, setAlarm] = useState([]);
-  
+
   //Almacena la busqueda.
   const [busqueda, setBusqueda] = useState(null);
+
   //Almacena alarma que coincide con busqueda.
   const [filtro, setFiltro] = useState(null);
   
@@ -54,6 +56,15 @@ export default function BuscadorAlarms(props) {
     })();
   }, [busqueda,reload,alarm]);
 
+  
+  //Funcion de imprimir
+  let impresion = useRef();
+  const handlePrint= useReactToPrint({
+    content: ()=> impresion.current,
+    documentTitle:"emp-data",
+    onAfterPrint: ()=> alert("Impresion exitos")
+  })
+
   return (
     <div className="buscador">
       <h1>Buscador de Alarmas</h1>
@@ -65,15 +76,19 @@ export default function BuscadorAlarms(props) {
           onChange={handleInputChange}
         />
       </div>
-      <div className="containerAlarmAll">
+      <div className="containerAlarmAll" ref={impresion} >
         {busqueda ? 
           filtro.map((alarma) => {
-            return (<ListAlarma key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
+            return (<ListAlarma ref={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
             
           }) : alarm.map((alarma) => {
-            return <ListAlarma key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
+            return <ListAlarma ref={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
           }) }
       </div>
+      <div className="option-admin" >
+        <button onClick={handlePrint} className="btn-primary"><Icon className="print" name="edit" />Imprimir</button>
+      </div>
+
     </div>
   );
 }

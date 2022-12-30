@@ -9,14 +9,15 @@ function Register() {
     });
     const[error,setError]=useState()
 
-    const {signup,loginWithGoogle} = useAuth();
+    const {signup/* ,loginWithGoogle */} = useAuth();
     const navigate= useNavigate();
 
     const handleChange = ({target:{name,value}})=>{
         setUser({...user,[name]:value})
 
     }
-    const handleGoogleSignin =async()=>{
+    
+    /* const handleGoogleSignin =async()=>{
         try {
             await loginWithGoogle();
             navigate("/");
@@ -28,7 +29,7 @@ function Register() {
             
         }
         
-    }
+    } */
     
     const handleSubmit = async(e)=>{
         e.preventDefault();
@@ -65,17 +66,11 @@ function Register() {
                 
             </form>
             <div className="contenedor-btn">
-                <button className="btn-primary" onClick={handleSubmit}>Registro con Correo</button>
-                <button className="btn-primary" onClick={handleGoogleSignin}>Registro con Google</button>
+                <button className="btn-primary" onClick={handleSubmit}>Registrar</button>
+                {/* <button className="btn-primary" onClick={handleGoogleSignin}>Registro con Google</button> */}
+                <button className="btn-primary" onClick={()=>{navigate('/')}}>Volver</button>      
             </div>
             {error && <p className="errorForm">{error}</p>}
-            <div>
-                <p>Ya tienes una cuenta registrada?</p>
-                <div className="contenedor-btn-secundary">
-                    <button className="btn-secundary" onClick={()=>{navigate('/login')}}>Ir al Login</button>
-                </div>
-                
-            </div>
         </div>
         
     );

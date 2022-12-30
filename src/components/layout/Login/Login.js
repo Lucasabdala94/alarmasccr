@@ -4,17 +4,17 @@ import { useAuth } from "../../../context/authContext";
 import "./loginregister.css";
 
 
-function Login() {
+export default function Login() {
     const [user,setUser]= useState({
         email:'',
         password:'',
     });
     const[error,setError]=useState()
 
-    const {login,loginWithGoogle,resetPassword} = useAuth();
+    const {login,/* loginWithGoogle */resetPassword} = useAuth();
     const navigate= useNavigate();
 
-    const handleGoogleSignin =async()=>{
+    /* const handleGoogleSignin =async()=>{
         try {
             await loginWithGoogle();
             navigate("/");
@@ -22,7 +22,7 @@ function Login() {
             setError(error.message);
         }
         
-    }
+    } */
     const handleResetPassword = async()=>{
         if(!user.email) return setError("Ingresá el correo"); 
         try {
@@ -77,18 +77,17 @@ function Login() {
                 
             </form>   
             <div className="contenedor-btn">
-                <button className="btn-primary" onClick={handleSubmit} 
- >Login</button>
-                <button className="btn-primary" onClick={handleGoogleSignin}>Login con Google</button>
+                <button className="btn-primary" onClick={handleSubmit} >Login</button>
+                {/* <button className="btn-primary" onClick={handleGoogleSignin}>Login con Google</button> */}
             </div>
             {error && <p className="errorForm">{error}</p>}
             
-            <div>
+            {/* <div>
                 <p>Aun no tienes Cuenta...</p>
                 <div className="contenedor-btn-secundary">
                 <button className="btn-secundary" onClick={()=>{navigate('/register')}}>Ir al Registro</button>
                 </div>
-            </div>
+            </div> */}
             <div>
                 <p>Olvidaste tu contraseña...</p>
                 <div className="contenedor-btn-secundary">
@@ -99,5 +98,3 @@ function Login() {
         
     );
 }
-
-export default Login;

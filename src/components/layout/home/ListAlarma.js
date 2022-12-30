@@ -24,7 +24,7 @@ export default function ListAlarma(props) {
           <span>Nivel : </span>
           {alarma?.data?.nivelTension}
         </div>
-        {user?.email=== "administrador@gmail.com" && 
+        {user?.email=== "administrador@gmail.com" &&
           (<Fragment>
           <div className="option-admin" >
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditar(true)} className="btn-Eliminar"><Icon className="icon" name="edit" /></button>
