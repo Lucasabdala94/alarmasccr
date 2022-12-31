@@ -1,5 +1,5 @@
-import React, { useState, useEffect,useRef,createRef } from 'react';
-import { Input,Icon } from 'semantic-ui-react';
+import React, { useState, useEffect,useRef } from 'react';
+import { Input,Icon,Loader,Dimmer} from 'semantic-ui-react';
 import './alarms.css';
 import { db } from '../../../firebase';
 import { getDocs, collection, query, orderBy} from 'firebase/firestore';
@@ -39,7 +39,7 @@ export default function BuscadorAlarms(props) {
           
         });
         setAlarm(alarmsAll);
-        
+        setCargaAlarm(true);
       } catch (e) {
         console.log(e);
       }
@@ -82,6 +82,13 @@ export default function BuscadorAlarms(props) {
           onChange={handleInputChange}
         />
       </div>
+      {cargaAlarm===false ? (
+          <Dimmer active>
+            <Loader size='huge'>Cargando...</Loader>
+          </Dimmer>
+        ) 
+        : null
+      }
       {alarm.length!==0 &&
         <div className="impresion" >
           <button onClick={handlePrint} className="btn-primary"><Icon className="print" name="edit" /></button>
