@@ -71,19 +71,16 @@ export default function BuscadorAlarms(props) {
 
   //configuramos margenes y tipo de pagina.
   const getPageMargins = () => {
-    return (`@page { margin: 25mm 15mm 10mm 30mm !important;
+    return (
+      `@page { margin: 25mm 15mm 10mm 30mm !important;
       size: A4 ;
-      page-break-after:auto;
-    }
-    @media print {
-      .page-break {
-        margin-top: 1rem;
-        display: block;
-        page-break-before: left;
       }
-    }
-    
-    `);
+      table {
+        page-break-inside: avoid;
+      }
+      `
+      
+    );
   };
 
   //Funcion de imprimir
@@ -92,11 +89,18 @@ export default function BuscadorAlarms(props) {
     documentTitle: "Alarmas CCR",
     pageStyle:getPageMargins(),
   });
-
   
-
+  
+  
   return (
     <div className="buscador">
+      {cargaAlarm===false ? (
+          <Dimmer active>
+            <Loader size='huge'>Cargando...</Loader>
+          </Dimmer>
+        ) 
+        : null
+      }
       <h1>Buscador de Alarmas</h1>
       <div className="containerInput containerAlarmAll">
         <Input
@@ -106,13 +110,6 @@ export default function BuscadorAlarms(props) {
           onChange={handleInputChange}
         />
       </div>
-      {cargaAlarm===false ? (
-          <Dimmer active>
-            <Loader size='huge'>Cargando...</Loader>
-          </Dimmer>
-        ) 
-        : null
-      }
       {alarm.length!==0 &&
         <div className="impresion" >
           <button onClick={async()=>{
@@ -123,7 +120,7 @@ export default function BuscadorAlarms(props) {
             } className="btn-primary"><Icon className="print" name="edit" /></button>
         </div>
       }
-      <div className="containerAlarmAll" ref={impresion} >
+      <table className="containerAlarmAll" ref={impresion} >
         {imprimir ? <Impresion createRef={impresion}/>: null}
         {busqueda ? 
           filtro.map((alarma) => {
@@ -132,7 +129,7 @@ export default function BuscadorAlarms(props) {
           }) : alarm.map((alarma) => {
             return <ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} imprimir={imprimir} />
           }) }
-      </div>
+      </table>
     </div>
   );
 }

@@ -15,8 +15,9 @@ export default function ListAlarma(props) {
   //Abre modal de editar alarma modo admin.
   const [editar, setEditar] = useState(false);
   return (
-    <div key={alarma?.data?.id} className="containerAlarm">
-      <div className="containerAlarm-title">
+    <thead key={alarma?.data?.id} className="containerAlarm">
+      <tr>
+      <div className="containerAlarm-title" >
         <div className="contaienrAlarm-contenido">
           <span> ET : </span> {alarma.data.et.toUpperCase()}
         </div>
@@ -44,7 +45,7 @@ export default function ListAlarma(props) {
           </div>
         </div>
       </div>
-      <br></br>
+      
       <div className="contenedor-footer-alarm">
         <p className="containerAlarm-alarmaScada-historial">
             {alarma?.data?.creado}
@@ -85,6 +86,7 @@ export default function ListAlarma(props) {
       reload={reload}
       data={alarma?.data}
       />
-    </div>
+      </tr>
+    </thead>
   );
 }
