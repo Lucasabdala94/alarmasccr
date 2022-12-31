@@ -6,6 +6,7 @@ import { getDocs, collection, query, orderBy} from 'firebase/firestore';
 import ListAlarma from './ListAlarma';
 import {filtroBusqueda} from "../../../helper/filtroBusqueda";
 import { useReactToPrint } from 'react-to-print';
+import Impresion from './impresion/Impresion';
 
 export default function BuscadorAlarms(props) {
   //estado que contiene todas las alarmas (datos  e id);
@@ -13,6 +14,9 @@ export default function BuscadorAlarms(props) {
 
   //Almacena la busqueda.
   const [busqueda, setBusqueda] = useState(null);
+
+  //Estado para impresion.
+  const [imprimir,setImprimir]=useState(false);
 
   //almacena si ya se cargaron las alarmas.
   const [cargaAlarm,setCargaAlarm]= useState(false)
@@ -65,7 +69,7 @@ export default function BuscadorAlarms(props) {
  
     const handlePrint= useReactToPrint({
       content: ()=> impresion.current,
-      documentTitle:"emp-data",
+      documentTitle:"Alarmas CCR",
       
     });
 
@@ -91,10 +95,16 @@ export default function BuscadorAlarms(props) {
       }
       {alarm.length!==0 &&
         <div className="impresion" >
-          <button onClick={handlePrint} className="btn-primary"><Icon className="print" name="edit" /></button>
+          <button onClick={async()=>{
+            await setImprimir(true);
+            handlePrint()
+            setImprimir(false)
+          }
+            } className="btn-primary"><Icon className="print" name="edit" /></button>
         </div>
       }
       <div className="containerAlarmAll" ref={impresion} >
+        {imprimir ? <Impresion createRef={impresion}/>: null}
         {busqueda ? 
           filtro.map((alarma) => {
             return (<ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
