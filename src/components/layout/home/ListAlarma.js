@@ -17,7 +17,7 @@ export default function ListAlarma(props) {
   return (
     <thead key={alarma?.data?.id} className="containerAlarm">
       <tr>
-      <div className="containerAlarm-title" >
+      <td className="containerAlarm-title" >
         <div className="contaienrAlarm-contenido">
           <span> ET : </span> {alarma.data.et.toUpperCase()}
         </div>
@@ -34,8 +34,8 @@ export default function ListAlarma(props) {
           </Fragment>)
         }
         
-      </div>
-      <div className="containerAlarm-descripcion">
+      </td>
+      <td className="containerAlarm-descripcion">
         <div className="containerAlarm-alarmaScada">
           {alarma?.data?.alarma.toUpperCase()}
         </div>
@@ -44,30 +44,30 @@ export default function ListAlarma(props) {
             {alarma.data.descripcion}
           </div>
         </div>
-      </div>
+      </td>
       
-      <div className="contenedor-footer-alarm">
+      <td className="contenedor-footer-alarm">
         <p className="containerAlarm-alarmaScada-historial">
             {alarma?.data?.creado}
         </p>
         <p className="containerAlarm-alarmaScada-historial">
           {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fecha))}
         </p>
-      </div>
+      </td>
       {alarma?.data?.descripcionAdmin &&
-        (<Fragment><div>
+        (<Fragment><td>
           <div className="containerAlarm-descripcion">
             {alarma?.data?.descripcionAdmin}
           </div>
-      </div>
-      <div className="contenedor-footer-alarmAdmin">
+      </td>
+      <td className="contenedor-footer-alarmAdmin">
         <p className="containerAlarm-alarmaScada-historial">
             {alarma?.data?.creadoAdmin}
         </p>
         <p className="containerAlarm-alarmaScada-historial">
           {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fechaAdmin))}
         </p>
-      </div>
+      </td>
       </Fragment>)}
       <ModalEliminarAlarma 
         onClose={() => setBorrar(false)}
