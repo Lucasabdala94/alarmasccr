@@ -14,6 +14,9 @@ export default function BuscadorAlarms(props) {
   //Almacena la busqueda.
   const [busqueda, setBusqueda] = useState(null);
 
+  //almacena si ya se cargaron las alarmas.
+  const [cargaAlarm,setCargaAlarm]= useState(false)
+
   //Almacena alarma que coincide con busqueda.
   const [filtro, setFiltro] = useState(null);
   
@@ -79,6 +82,11 @@ export default function BuscadorAlarms(props) {
           onChange={handleInputChange}
         />
       </div>
+      {alarm.length!==0 &&
+        <div className="impresion" >
+          <button onClick={handlePrint} className="btn-primary"><Icon className="print" name="edit" /></button>
+        </div>
+      }
       <div className="containerAlarmAll" ref={impresion} >
         {busqueda ? 
           filtro.map((alarma) => {
@@ -88,13 +96,6 @@ export default function BuscadorAlarms(props) {
             return <ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
           }) }
       </div>
-      {alarm.length!==0 &&
-        <div className="impresion" >
-          <button onClick={handlePrint} className="btn-secundary"><Icon className="print" name="edit" /></button>
-        </div>
-      }
-      
-
     </div>
   );
 }
