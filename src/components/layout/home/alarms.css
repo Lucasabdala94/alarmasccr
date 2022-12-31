@@ -154,14 +154,25 @@
   margin: 0 auto !important;
   
 }
+
+.impresion{
+  display: none;
+  
+}
 .contenedor-menu-admin{
-  display:flex;
-  align-items:center;
-  justify-content: space-evenly;
   margin-top: 30px;
 }
-.impresion{
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 8px;
-}
+@media screen and (min-width: 768px){
+  .impresion{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 8px;
+    margin-top: 10px;
+  }
+  .contenedor-menu-admin{
+    display:flex;
+    align-items:center;
+    justify-content: space-evenly;
+    
+  }
+} 
