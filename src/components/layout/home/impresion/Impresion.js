@@ -1,19 +1,27 @@
-import React,{ Fragment } from "react";
+import React from "react";
 
 
 
 
 export default function Impresion(){
-
+    const fecha= new Date();
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+    const fechaEntrega = fecha.toLocaleDateString('es-ES', options).toString();
+      
     return(
-        <Fragment>
-            <header>
-                <h1>Novedades de Alarmas</h1>
-            </header>
-            <main>
-                <p>tecto que agrege la persona</p>
-            </main>
+        <div>
+            <div>
+            <h1 >Novedades de Alarmas</h1>
+            </div>
             
-        </Fragment>
+            <div className="mainImpresion">
+                <p> {fechaEntrega}</p>
+            </div>         
+        </div>
     )
 }

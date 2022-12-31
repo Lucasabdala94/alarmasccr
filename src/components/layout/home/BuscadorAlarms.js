@@ -1,6 +1,7 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { Input,Icon,Loader,Dimmer} from 'semantic-ui-react';
 import './alarms.css';
+import "./impresion/impresion.css";
 import { db } from '../../../firebase';
 import { getDocs, collection, query, orderBy} from 'firebase/firestore';
 import ListAlarma from './ListAlarma';
@@ -62,16 +63,29 @@ export default function BuscadorAlarms(props) {
       setFiltro(await filtroBusqueda(alarm, busqueda));
     })();
   }, [busqueda,reload,alarm]);
-
   
+
+
   let impresion = useRef();
   //Funcion de imprimir
- 
-    const handlePrint= useReactToPrint({
-      content: ()=> impresion.current,
-      documentTitle:"Alarmas CCR",
-      
-    });
+  const getPageMargins = () => {
+    return (`@page { margin: 25mm 15mm 10mm 30mm !important;
+      size: A4 ;
+    }
+    @media print {
+      .pagebreak {
+        page-break-before: always;
+      }
+    }
+    
+    `);
+  };
+
+  const handlePrint = useReactToPrint({
+    content: () => impresion.current,
+    documentTitle: "Alarmas CCR",
+    pageStyle:getPageMargins(),
+  });
 
   
 
