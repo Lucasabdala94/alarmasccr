@@ -67,20 +67,26 @@ export default function BuscadorAlarms(props) {
 
 
   let impresion = useRef();
-  //Funcion de imprimir
+  
+
+  //configuramos margenes y tipo de pagina.
   const getPageMargins = () => {
     return (`@page { margin: 25mm 15mm 10mm 30mm !important;
       size: A4 ;
+      page-break-after:auto;
     }
     @media print {
-      .pagebreak {
-        page-break-before: always;
+      .page-break {
+        margin-top: 1rem;
+        display: block;
+        page-break-before: left;
       }
     }
     
     `);
   };
 
+  //Funcion de imprimir
   const handlePrint = useReactToPrint({
     content: () => impresion.current,
     documentTitle: "Alarmas CCR",
@@ -121,10 +127,10 @@ export default function BuscadorAlarms(props) {
         {imprimir ? <Impresion createRef={impresion}/>: null}
         {busqueda ? 
           filtro.map((alarma) => {
-            return (<ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />)
+            return (<ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} imprimir={imprimir} />)
             
           }) : alarm.map((alarma) => {
-            return <ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} />
+            return <ListAlarma createRef={impresion} key={alarma?.data?.id} alarma={alarma} setReload={setReload} reload={reload} imprimir={imprimir} />
           }) }
       </div>
     </div>

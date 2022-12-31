@@ -9,7 +9,7 @@ import { transformFecha } from "../../../helper/transforFecha";
 
 export default function ListAlarma(props) {
   const { user } = useAuth();
-  const { alarma,setReload,reload } = props;
+  const { alarma,setReload,reload,imprimir} = props;
   //Abre modal de eliminar alarma modo admin.
   const [borrar, setBorrar] = useState(false);
   //Abre modal de editar alarma modo admin.
@@ -24,9 +24,9 @@ export default function ListAlarma(props) {
           <span>Nivel : </span>
           {alarma?.data?.nivelTension}
         </div>
-        {user?.email=== "administrador@gmail.com" &&
+        {(user?.email=== "administrador@gmail.com") &&
           (<Fragment>
-          <div className="option-admin" >
+          <div className="option-admin" key={uuidv4()} style={imprimir ? {display: "none"} : null} >
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditar(true)} className="btn-Eliminar"><Icon className="icon" name="edit" /></button>
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setBorrar(true)} className="btn-Eliminar"><Icon name="trash alternate" /></button>
           </div>

@@ -16,9 +16,8 @@ export default function Impresion(){
     return(
         <div>
             <div>
-            <h1 >Novedades de Alarmas</h1>
-            </div>
-            
+                <h1 >Novedades de Alarmas</h1>
+            </div>          
             <div className="mainImpresion">
                 <p> {fechaEntrega}</p>
             </div>         
