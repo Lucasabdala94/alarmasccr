@@ -9,7 +9,6 @@ import {filtroBusqueda} from "../../../helper/filtroBusqueda";
 import { useReactToPrint } from 'react-to-print';
 import Impresion from './impresion/Impresion';
 import { getPageMargins } from '../../../helper/imprimir';
-import { async } from '@firebase/util';
 
 export default function BuscadorAlarms(props) {
   //estado que contiene todas las alarmas (datos  e id);
