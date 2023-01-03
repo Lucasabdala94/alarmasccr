@@ -1,4 +1,11 @@
 .mainImpresion{
     display: block;
-    
+    width: 100% !important;
+    font-size: 22px;
+}
+
+.contenedorAgregadoImpresion{
+    display:"block";
+    margin:"0 auto 15px";
+    text-align:"center"
 }

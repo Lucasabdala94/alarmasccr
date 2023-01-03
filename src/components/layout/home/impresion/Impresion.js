@@ -14,7 +14,7 @@ export default function Impresion(){
     const fechaEntrega = fecha.toLocaleDateString('es-ES', options).toString();
       
     return(
-        <div style={{display:"block",margin:"0 auto",textAlign:"center"}}>
+        <div className="contenedorAgregadoImpresion">
             <div>
                 <h1 >Novedades de Alarmas</h1>
             </div>          
