@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/authContext";
 import BuscadorAlarms from "./BuscadorAlarms"
 import AgregarAlarma from "./AgregarAlarma";
-
+import "./home.css";
 export default function Home() {
 
   // constantes para recargar las alarmas.
@@ -33,7 +33,7 @@ export default function Home() {
           <h3>{user?.displayName || user?.email}</h3>
         </div>
         {/* Boton para cerrar sesion */}
-        <button onClick={handleLogout} className="header-btn">salir</button>
+        <button onClick={handleLogout} className="header-btn">Salir</button>
       </div>
       {user?.email=== "administrador@gmail.com" && 
       <div className="contenedor-menu-admin">
@@ -41,7 +41,7 @@ export default function Home() {
           <h1>Registro de Alarmas</h1>
           <AgregarAlarma setReload={setReload} reload={reload} />
         </div>
-        <div className="contenedor-btn-secundary">
+        <div>
           <button className="btn-primary" onClick={()=>{navigate('/register')}}>Registrar Usuario</button>
         </div>
       </div>

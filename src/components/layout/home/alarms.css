@@ -1,136 +1,95 @@
-.containerAlarmAll {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: 0 auto;
-}
-
-@media screen and (min-width: 768px) {
-  .containerAlarmAll {
-    max-width: 1200px;
-  }
-  .containerAlarm-alarmaScada {
-    font-family: sans-serif;
-    background: black;
-    color: aliceblue;
-    font-size: 22px;
-    padding: 3px;
-    padding-left: 14px;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-}
-
-.containerAlarm {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: rgb(255 255 255 / 79%);
-  color: rgb(255, 255, 255);
-  margin: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.774);
-  border-radius: 12px;
-  padding: 15px;
-  flex-direction: column;
-  width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  margin-top: 25px;
-  margin-bottom: 15px;
-}
-.containerAlarm-title {
-  display: flex;
-  justify-content: space-around;
-  align-items: baseline;
-  flex-wrap: wrap;
-  color: rgba(0, 0, 0, 0.849);
-  border-bottom: 3px solid rgba(0, 0, 0, 0.774);
-  padding-bottom: 5px;
-}
-.contaienrAlarm-contenido {
-  font-size: 18px;
-  letter-spacing: 1.4px;
-  font-weight: bold;
-}
-.contaienrAlarm-contenido > span {
-  font-size: 18px;
-  margin-right: 3px;
-}
-.containerAlarm-descripcion {
-  color: rgb(22, 4, 77);
-  padding: 12px 2px;
-  border-radius: 0px 0px 12px 12px;
-}
-
-.containerAlarm-alarmaScada-title {
-  margin-bottom: 4px;
-  margin-left: 10px;
-  font-size: 18px;
-}
-.containerAlarm-descripcion {
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 1.2px;
-  margin-block-start: 0px;
-  padding-left: 8px;
-}
-.containerAlarm-alarmaScada {
-  font-family: sans-serif;
-  background: rgba(0, 0, 0, 0.808);
-  border-radius: 4px;
-  color:rgb(249, 249, 250);
-  font-size: 1em;
-  border: 0.5px solid rgba(240, 248, 255, 0.884);
-  padding: 3px;
-
-  margin-bottom: 8px;
-}
-
+/*Contenedor de todo el buscador*/
 .buscador {
   display: block;
   margin-top: 25px;
   margin: 25 auto;
 }
-.buscador > h1 {
+.titleBuscador{
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
+}
+.containerInput {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .containerInput {
+   display: flex;
+  } 
 }
 .inputBuscar {
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  -moz-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background: var(--background-light);
+  color: var(--color-text);
   margin-bottom: 15px;
-  color: rgb(48, 49, 121);
   font-weight: bold;
+  display: flex;
 }
 .ui.icon.input > input {
-  background-color: rgb(219, 220, 221);
+  background-color: var(--background-light);
+  color: var(--color-text);
+  border: none;
   text-align: left;
-  color: rgb(40, 41, 107);
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 2.3px;
   padding:10px;
 }
+/* Contenedor de todas las alarmas*/
+.table{
+  margin: 25px auto;
+}
 
 @media screen and (min-width: 768px) {
-  .contenedor-footer-alarm{
-    display:flex;
-    justify-content: space-between;
-    padding-bottom: 7px;
-    border-bottom: 2px dotted rgba(0, 0, 0, 0.774);
-  }
-  .contenedor-footer-alarmAdmin{
-    display:flex;
-    justify-content: space-between;
-    padding-bottom: 7px;
+  .table{
+    width: 80%;
   }
 }
 
-.containerAlarm-alarmaScada-historial{
-  text-align: right;
+.containerAlarm{
+  display: block;
+  background-color: var(--background-light);
+  width: 95%;
+  padding: 15px;
+  margin: 15px auto;
+  border: 2px solid rgba(0, 0, 0, 0.774);
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.containerAlarm-tr{
+  display: block;
+  background-color: var(--background-light);
+  color: var(--color-text);
+}
+.containerAlarm-td {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+/* alarma de escada */
+.containerAlarm-alarmaScada {
+  display: block;
+  width: 100%;
+  padding: 3px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(22, 4, 77);
   color: rgb(22, 4, 77);
-  margin-bottom: 0px;
-  padding-left: 8px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+/*========================== */
+/*TITULO DE LA ALARMA*/
+
+.contaienrAlarm-contenido-title {
+  letter-spacing: 1.4px;
+  font-weight: bold;
 }
 .btn-Eliminar{
   background-color: rgb(42, 46, 104);;
@@ -139,7 +98,7 @@
   margin-left: 5px;
   letter-spacing:1.4px;
   text-align:center;
-  padding:8px;
+  padding:10px;
   border: none;
   margin-top: 8px;
 }
@@ -148,6 +107,10 @@
     background-color: rgb(226, 227, 237);
     color: rgb(5, 13, 85);
     outline: 1px solid rgb(5, 13, 85);
+    transition: all 0,4s;
+}
+.btn-Eliminar:active{
+  transform: translateY(2px);
 }
 .icon{
   display: block !important;
@@ -155,24 +118,41 @@
   
 }
 
-.impresion{
-  display: none;
+/*=========================================*/
+
+/*DESCRIPCION DE LA ALARMA */
+
+.containerAlarm-descripcion {
+  font-size: 14px;
+  padding: 12px 2px;
+  letter-spacing: 1.2px;
+  margin-block-start: 0px;
+  padding-left: 8px;
+  display: block;
+  width: 100%;
+  text-align: left !important;
+}
+.descriptionAdmin{
+  border-top: 1px solid var(--color-text);
+}
+
+/*footer alarma*/
+
+.contenedor-footer-alarm{
+  display: flex;
+  flex-direction:column;
+  align-items: flex-end;
+  margin-top: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .contenedor-footer-alarm{
+    display:flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
   
 }
-.contenedor-menu-admin{
-  margin-top: 30px;
-}
-@media screen and (min-width: 768px){
-  .impresion{
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 8px;
-    margin-top: 10px;
-  }
-  .contenedor-menu-admin{
-    display:flex;
-    align-items:center;
-    justify-content: space-evenly;
-    
-  }
-} 
+/*========================== */
+

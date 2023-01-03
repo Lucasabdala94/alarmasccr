@@ -29,7 +29,7 @@ export default function AgregarAlarma(props) {
     <div>
       {/* BOTON PARA AGREGAR ALARAM */}
       <Button
-        className="btn"
+        className="btn-primary"
         onClick={() => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })}
       >
         Agregar

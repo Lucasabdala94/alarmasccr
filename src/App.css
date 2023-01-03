@@ -1,45 +1,17 @@
 body {
-  background-color: rgb(42, 46, 104);
+  background-color: var(--background-general);
 }
-.header{
-  display:flex;
-  flex-direction: column-reverse;
-  justify-content:space-between;
-  align-items: flex-end;
+
+/*Contenedor general  */
+.App {
+  display: block;
+  margin: 30px auto;
+  width: 90%;
+  color: rgb(255, 255, 255);
 }
-@media screen and (min-width: 768px) {
-  .header{
-    display:flex;
-    flex-direction: row;
-    width:100%;
-    justify-content:space-between;
-    align-items: baseline;
-  }
-}
-.container-user{
-  display: flex;
-  align-items: baseline;
-}
-.container-user>h3{
-  margin-left: 9px;
-  margin-bottom: 0px;
-  letter-spacing: 1.2px;
-}
-.header-btn{
-  color: rgb(42, 46, 104) !important;
-  font-weight: bold !important;
+.App > h1 {
   text-align: center;
-  font-size: 16px !important;
-  border-radius: 6px;
-  border: none;
-  letter-spacing: 1.5px;
-  padding: 6px;
-  height: 20px;
-  line-height: 10px;  
-  width: 90px;
 }
-.header-btn:hover{
-  background-color:rgb(42, 46, 104) !important;
-  outline: 0.5px solid #fff !important;
-  color:#fff !important;
+.contenedor-centrador {
+  text-align: center;
 }

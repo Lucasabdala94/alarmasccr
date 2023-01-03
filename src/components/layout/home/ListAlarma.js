@@ -15,14 +15,19 @@ export default function ListAlarma(props) {
   //Abre modal de editar alarma modo admin.
   const [editar, setEditar] = useState(false);
   return (
-    <thead key={alarma?.data?.id} className="containerAlarm">
-      <tr>
-      <td className="containerAlarm-title" >
-        <div className="contaienrAlarm-contenido">
-          <span> ET : </span> {alarma.data.et.toUpperCase()}
+    <thead key={alarma?.data?.id} className="containerAlarm"  style={imprimir ? {boxShadow:"none"} : null} >
+      <tr className="containerAlarm-tr">
+      
+      <td className="containerAlarm-td" >
+        <div className="containerAlarm-alarmaScada">
+          {alarma?.data?.alarma.toUpperCase()}
         </div>
-        <div className="contaienrAlarm-contenido">
-          <span>Nivel : </span>
+      </td>
+      <td className="containerAlarm-td" >
+        <div className="contaienrAlarm-contenido-title">
+          {alarma.data.et.toUpperCase()}
+        </div>
+        <div className="contaienrAlarm-contenido-title">
           {alarma?.data?.nivelTension}
         </div>
         {(user?.email=== "administrador@gmail.com") &&
@@ -35,15 +40,10 @@ export default function ListAlarma(props) {
         }
         
       </td>
-      <td className="containerAlarm-descripcion">
-        <div className="containerAlarm-alarmaScada">
-          {alarma?.data?.alarma.toUpperCase()}
-        </div>
-        <div>
-          <div className="containerAlarm-descripcion">
-            {alarma.data.descripcion}
-          </div>
-        </div>
+      <td className="containerAlarm-td" >
+        <p className="containerAlarm-descripcion">
+          {alarma.data.descripcion}
+        </p>
       </td>
       
       <td className="contenedor-footer-alarm">
@@ -54,21 +54,22 @@ export default function ListAlarma(props) {
           {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fecha))}
         </p>
       </td>
-      {alarma?.data?.descripcionAdmin &&
-        (<Fragment><td>
-          <div className="containerAlarm-descripcion">
-            {alarma?.data?.descripcionAdmin}
-          </div>
-      </td>
-      <td className="contenedor-footer-alarmAdmin">
-        <p className="containerAlarm-alarmaScada-historial">
-            {alarma?.data?.creadoAdmin}
-        </p>
-        <p className="containerAlarm-alarmaScada-historial">
-          {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fechaAdmin))}
-        </p>
-      </td>
-      </Fragment>)}
+        {alarma?.data?.descripcionAdmin &&
+          (<Fragment>
+            <td className="containerAlarm-td" >
+              <p className="containerAlarm-descripcion descriptionAdmin">
+                {alarma.data.descripcionAdmin}
+              </p>
+            </td>
+            <td className="contenedor-footer-alarm">
+              <p className="containerAlarm-alarmaScada-historial">
+                  {alarma?.data?.creadoAdmin}
+              </p>
+              <p className="containerAlarm-alarmaScada-historial">
+                {capitalizarPrimeraLetra(transformFecha(alarma?.data?.fechaAdmin))}
+              </p>
+            </td>
+          </Fragment>)}
       <ModalEliminarAlarma 
         onClose={() => setBorrar(false)}
         onOpen={() => setBorrar(true)}

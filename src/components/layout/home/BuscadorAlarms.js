@@ -8,6 +8,8 @@ import ListAlarma from './ListAlarma';
 import {filtroBusqueda} from "../../../helper/filtroBusqueda";
 import { useReactToPrint } from 'react-to-print';
 import Impresion from './impresion/Impresion';
+import { getPageMargins } from '../../../helper/imprimir';
+import { async } from '@firebase/util';
 
 export default function BuscadorAlarms(props) {
   //estado que contiene todas las alarmas (datos  e id);
@@ -63,34 +65,14 @@ export default function BuscadorAlarms(props) {
       setFiltro(await filtroBusqueda(alarm, busqueda));
     })();
   }, [busqueda,reload,alarm]);
-  
-
-
-  let impresion = useRef();
-  
-
-  //configuramos margenes y tipo de pagina.
-  const getPageMargins = () => {
-    return (
-      `@page { margin: 25mm 15mm 10mm 30mm !important;
-      size: A4 ;
-      }
-      table {
-        page-break-inside: avoid;
-      }
-      `
-      
-    );
-  };
 
   //Funcion de imprimir
+  let impresion = useRef();
   const handlePrint = useReactToPrint({
     content: () => impresion.current,
     documentTitle: "Alarmas CCR",
     pageStyle:getPageMargins(),
   });
-  
-  
   
   return (
     <div className="buscador">
@@ -101,12 +83,12 @@ export default function BuscadorAlarms(props) {
         ) 
         : null
       }
-      <h1>Buscador de Alarmas</h1>
-      <div className="containerInput containerAlarmAll">
+      <h1 className="titleBuscador">Buscador de Alarmas</h1>
+      <div className="containerInput">
         <Input
           className="inputBuscar"
           icon="list"
-          placeholder="Buscar Alarmas..."
+          placeholder="Buscar por ET"
           onChange={handleInputChange}
         />
       </div>
@@ -114,13 +96,13 @@ export default function BuscadorAlarms(props) {
         <div className="impresion" >
           <button onClick={async()=>{
             await setImprimir(true);
-            handlePrint()
+            handlePrint();
             setImprimir(false)
           }
             } className="btn-primary"><Icon className="print" name="edit" /></button>
         </div>
       }
-      <table className="containerAlarmAll" ref={impresion} >
+      <table className='table' ref={impresion} >
         {imprimir ? <Impresion createRef={impresion}/>: null}
         {busqueda ? 
           filtro.map((alarma) => {
