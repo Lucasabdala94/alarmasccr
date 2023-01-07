@@ -78,6 +78,9 @@ export default function AlarmsFormsEdit(props) {
                             nivelTension: nivelTension,
                             fecha: new Date(),
                             creado: user?.displayName || user?.email,
+                            fechaAdmin:"",
+                            descripcionAdmin:"",
+                            creadoAdmin:"",
                         });
                         setEditada(true);
                         setLoading(false);
