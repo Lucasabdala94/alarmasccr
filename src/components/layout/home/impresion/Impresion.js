@@ -17,7 +17,7 @@ export default function Impresion(){
         <div className="contenedorAgregadoImpresion">
             <div>
                 <h1 >Novedades de Alarmas</h1>
-            </div>          
+            </div>       
             <div className="mainImpresion">
                 <p> {fechaEntrega}</p>
             </div>         

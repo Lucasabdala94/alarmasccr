@@ -6,6 +6,7 @@ import ModalEliminarAlarma from "../../Admin/ModalEliminarAlarma";
 import ModalEditarAlarmaAdmin from "../../Admin/ModalEditarAlarmaAdmin";
 import { capitalizarPrimeraLetra } from "../../../helper/textTransform";
 import { transformFecha } from "../../../helper/transforFecha";
+import ModalEditarUser from "../../modal/ModalEditarUser";
 
 export default function ListAlarma(props) {
   const { user } = useAuth();
@@ -14,6 +15,10 @@ export default function ListAlarma(props) {
   const [borrar, setBorrar] = useState(false);
   //Abre modal de editar alarma modo admin.
   const [editar, setEditar] = useState(false);
+  //Abre modal editar alarma usuario y admin.
+  const [editarUser,setEditarUser]=useState(false);
+
+
   return (
     <thead key={alarma?.data?.id} className="containerAlarm"  style={imprimir ? {boxShadow:"none"} : null} >
       <tr className="containerAlarm-tr">
@@ -33,8 +38,19 @@ export default function ListAlarma(props) {
         {(user?.email=== "administrador@gmail.com") &&
           (<Fragment>
           <div className="option-admin" key={uuidv4()} style={imprimir ? {display: "none"} : null} >
-            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditar(true)} className="btn-Eliminar"><Icon className="icon" name="edit" /></button>
+            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditar(true)} className="btn-Eliminar"><Icon className="icon" name="plus" /></button>
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setBorrar(true)} className="btn-Eliminar"><Icon name="trash alternate" /></button>
+          </div>
+          </Fragment>)
+        }
+        {(user?.email=== alarma?.data?.creado) &&
+          (<Fragment>
+          <div className="option-admin" key={uuidv4()} style={imprimir ? {display: "none"} : null} >
+            <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditarUser(true)} className="btn-Eliminar"><Icon className="icon" name="edit outline" /></button>
+            {user?.email!== "administrador@gmail.com" &&
+              <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setBorrar(true)} className="btn-Eliminar"><Icon name="trash alternate" /></button>
+            }
+            
           </div>
           </Fragment>)
         }
@@ -47,7 +63,7 @@ export default function ListAlarma(props) {
       </td>
       
       <td className="contenedor-footer-alarm">
-        <p className="containerAlarm-alarmaScada-historial">
+        <p className="containerAlarm-alarmaScada-historial" style={imprimir ? {display: "none"} : null}>
             {alarma?.data?.creado}
         </p>
         <p className="containerAlarm-alarmaScada-historial">
@@ -86,6 +102,15 @@ export default function ListAlarma(props) {
       setReload={setReload}
       reload={reload}
       data={alarma?.data}
+      />
+      <ModalEditarUser
+        onClose={() => setEditarUser(false)}
+        onOpen={() => setEditarUser(true)}
+        open={editarUser}
+        id={alarma?.idDoc}
+        setReload={setReload}
+        reload={reload}
+        data={alarma?.data}
       />
       </tr>
     </thead>

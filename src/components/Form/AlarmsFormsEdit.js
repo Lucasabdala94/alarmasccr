@@ -3,7 +3,7 @@ import { Form, Input, Message, TextArea,Button } from 'semantic-ui-react';
 import ModalError from './../modal/ModalError';
 import Modalincompleto from './../modal/Modalincompleto';
 import { useAuth } from '../../context/authContext';
-import { doc, setDoc,collection,getDocs } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 import { db } from './../../firebase';
 import ModalSuccesEditar from "../modal/ModalSuccesEditar";
 import {crearArrayAlarmEt} from '../../helper/consultasFB';
