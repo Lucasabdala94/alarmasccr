@@ -26,6 +26,19 @@ export async function crearArrayAlarmEt(){
         return e
     }      
 }
+export async function crearArrayAlarmEtEditar(id){
+    let descriptionAll = [];
+    try {
+        const getAlarm = await getDocs(collection(db, '/alarmas'));
+        getAlarm.forEach((doc) => {
+          if(id!== doc.id){
+          descriptionAll.push(doc.data().alarma + doc.data().et);}
+        });
+        return descriptionAll;
+    } catch (e) {
+        return e
+    }      
+}
 
 export async function agregarAlarma(alarmaSan,descripcionSan,etSan,nivelTension,user){
     try {

@@ -6,7 +6,7 @@ import { useAuth } from '../../context/authContext';
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from './../../firebase';
 import ModalSuccesEditar from "../modal/ModalSuccesEditar";
-import {crearArrayAlarmEt} from '../../helper/consultasFB';
+import {crearArrayAlarmEtEditar} from '../../helper/consultasFB';
 import {nivelesTension} from '../../helper/nivelesTension';
 
 export default function AlarmsFormsEdit(props) {
@@ -59,7 +59,7 @@ export default function AlarmsFormsEdit(props) {
             async function ComprobarExisteEnviar (){
                 try {
                     //funcion que almacena en un array un conjunto de alarma + et.
-                    const alarEt= await crearArrayAlarmEt();
+                    const alarEt= await crearArrayAlarmEtEditar(id);
 
                     // si existe= true es porque ya existe una misma alarma en esa et. Se compara el nuevo registro editado con todos los de la base de datos.
                     let repetida = alarEt.includes(alarmaSan + etSan);
