@@ -28,6 +28,7 @@ export default function BuscadorAlarms(props) {
   
   const {reload,setReload}= props;
 
+
   //variables que Almacena los objetos con idFirebase y datos.
   let alarmsAll = [];
   //Trae de firebase todas las alarmas y la asigna al estado alarm

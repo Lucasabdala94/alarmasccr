@@ -18,6 +18,26 @@ export default function ListAlarma(props) {
   //Abre modal editar alarma usuario y admin.
   const [editarUser,setEditarUser]=useState(false);
 
+  //comprueba si la alarma es el propietario y no paso mas de un dia.
+  const fecharegistro = new Date(alarma?.data?.fecha.toDate());
+  const fechaLimit = new Date();
+  fechaLimit.setTime(fecharegistro.getTime());
+  const diaMiliseconds = 60 * 60 * 1000*24;
+  fechaLimit.setTime(fechaLimit.getTime() + diaMiliseconds);
+  const fechaActual=new Date();
+
+  let editable;
+  if(user?.email=== alarma?.data?.creado){
+    if(fechaActual< fechaLimit){
+
+      editable=true;
+    }else{
+      editable=false;
+    }
+  }else{
+    editable=false;
+  }
+//=========================================================
 
   return (
     <thead key={alarma?.data?.id} className="containerAlarm"  style={imprimir ? {boxShadow:"none"} : null} >
@@ -35,7 +55,7 @@ export default function ListAlarma(props) {
         <div className="contaienrAlarm-contenido-title">
           {alarma?.data?.nivelTension}
         </div>
-        {(user?.email=== "administrador@gmail.com") &&
+        {(user?.email=== "administrador@gmail.com" ) &&
           (<Fragment>
           <div className="option-admin" key={uuidv4()} style={imprimir ? {display: "none"} : null} >
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditar(true)} className="btn-Eliminar"><Icon className="icon" name="plus" /></button>
@@ -43,7 +63,7 @@ export default function ListAlarma(props) {
           </div>
           </Fragment>)
         }
-        {(user?.email=== alarma?.data?.creado) &&
+        {(editable===true ) &&
           (<Fragment>
           <div className="option-admin" key={uuidv4()} style={imprimir ? {display: "none"} : null} >
             <button id={alarma?.idDoc} key={uuidv4()} onClick={(e)=>setEditarUser(true)} className="btn-Eliminar"><Icon className="icon" name="edit outline" /></button>

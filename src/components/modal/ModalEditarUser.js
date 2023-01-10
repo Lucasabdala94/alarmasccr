@@ -4,7 +4,6 @@ import {Header,Modal} from "semantic-ui-react";
 export default function ModalEditarUser(props) {
 
     const { onClose, onOpen, open, id,setReload,reload,data } = props;
-  
     return (
       <Modal
         onClose={onClose}
@@ -19,7 +18,7 @@ export default function ModalEditarUser(props) {
           </div>
         </Header>
         <Modal.Content>
-          <AlarmsFormsEdit data={data} id={id} onClose={onClose} setReload={setReload} reload={reload}/>
+          <AlarmsFormsEdit data={data} id={id} onClose={onClose} setReload={setReload} reload={reload} />
         </Modal.Content>
       </Modal>
     );
