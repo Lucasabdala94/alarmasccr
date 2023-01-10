@@ -146,17 +146,17 @@ export default function AlarmsFormsEdit(props) {
             <Message
                 warning
                 list={[
-                    'Ingresar fecha y hora de los eventos ',
-                    'Incluir informacion del personal informado',
+                    'Ingresar hora de los eventos.',
+                    'Incluir informacion del personal informado.',
                 ]}
             />
             <Form.Field>
                 <div className='contenedor-botones-center'>
-                    <Button inverted color="blue" onClick={onClose}>
-                        Cancelar
-                    </Button>
-                    <Button inverted color="red" onClick={handleInputChange}>
+                    <Button inverted color="blue"  onClick={handleInputChange}>
                         Editar
+                    </Button>
+                    <Button inverted color="red"  onClick={onClose}>
+                        Cancelar
                     </Button>
                 </div>
             </Form.Field>

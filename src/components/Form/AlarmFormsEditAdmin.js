@@ -94,11 +94,11 @@ export default function AlarmsFormsEditAdmin(props) {
             />
             <Form.Field>
                 <div className='contenedor-botones-center'>
-                    <Button inverted color="blue" onClick={onClose}>
-                        Cancelar
-                    </Button>
-                    <Button inverted color="red" onClick={handleInputChange}>
+                    <Button inverted color="blue"  onClick={handleInputChange}>
                         Agregar respuesta
+                    </Button>
+                    <Button inverted color="red"  onClick={onClose}>
+                        Cancelar
                     </Button>
                 </div>
             </Form.Field>

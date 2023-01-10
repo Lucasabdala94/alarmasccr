@@ -127,7 +127,7 @@ export default function AlarmsForms() {
       <Message
         warning
         list={[
-          'Ingresar fecha y hora de los eventos.',
+          'Ingresar hora de los eventos.',
           'Incluir informacion del personal informado.',
         ]}
       />

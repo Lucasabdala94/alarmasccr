@@ -16,7 +16,6 @@ export default function ModalError(props) {
     >
 
       <Header className='Modal-header'>
-        <div className='Content-Icon'><Icon name="check square outline" color="green" /></div>
         <p className='Modal-title'>Alarma registrada correctamente</p>
       </Header>
       <Modal.Actions className='Modal-header'>
