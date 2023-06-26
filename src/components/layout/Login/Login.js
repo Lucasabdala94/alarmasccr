@@ -77,7 +77,7 @@ export default function Login() {
                 
             </form>   
             <div className="contenedor-btn">
-                <button className="btn-primary" onClick={handleSubmit} >Login</button>
+                <button type="submit" className="btn-primary" onClick={handleSubmit} >Login</button>
                 {/* <button className="btn-primary" onClick={handleGoogleSignin}>Login con Google</button> */}
             </div>
             {error && <p className="errorForm">{error}</p>}
